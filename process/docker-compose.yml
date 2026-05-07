@@ -1,0 +1,12 @@
+services:
+  win-sgbd-migration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: win-sgbd-migration
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ../schema:/workspace/schema:ro
+      - ../data:/workspace/data:ro

@@ -1,0 +1,53 @@
+Quiero que trabajes mi modelo de base de datos MySQL siguiendo ESTE estandar (obligatorio):
+
+
+1) Nomenclatura general
+- Usar snake_case y minusculas.
+- Tablas maestras con prefijo m_.
+- Tablas transaccionales con prefijo t_.
+- Llaves primarias con prefijo id_ (auto incremental cuando aplique).
+- NO usar columnas cod_ (si existe id_, no crear cod_).
+- Campos descriptivos con prefijo desc_.
+- Fechas con prefijo fec_.
+- Estados por catalogo:
+  - Usar id_estado (FK a m_estados) en t_* y tambien en m_menus, m_opciones, m_roles.
+  - En todas las tablas NO usar flg_activo, excepto en m_estados.
+
+2) Auditoria
+- Aplicar auditoria en todas las tablas t_* y m_*.
+- Las UNICAS columnas de auditoria permitidas son:
+  - desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER())
+  - desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER())
+  - fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  - fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+- No agregar otras columnas de auditoria (no desc_host_*, no nom_app*).
+
+3) Integridad y relaciones
+- Todas las tablas deben tener PK.
+- Definir FKs explicitas para relaciones.
+- Convencion de FKs: fk_<tabla_referenciada>_<tabla_origen>.
+- Evitar duplicados de nombres de constraints.
+- Orden obligatorio de columnas en tablas:
+  - Primero columnas PK.
+  - Luego columnas FK (excepto id_estado).
+  - Luego campos funcionales (desc_*, fec_ de negocio, etc.).
+  - Luego id_estado.
+  - Finalmente columnas de auditoria.
+- Tabla de estados obligatoria:
+  - m_estados(id_estado, desc_estado, flg_activo)
+  - Valores base: 1=Activo, 0=Inactivo
+  - Cada tabla t_* debe tener id_estado NOT NULL DEFAULT 1 con FK a m_estados(id_estado).
+
+4) Datos de prueba (seed)
+- Mantener inserts idempotentes con ON DUPLICATE KEY UPDATE.
+- Respetar orden por dependencias FK.
+- Si la tabla es t_*, incluir columnas de auditoria en el seed.
+
+5) Sincronizacion obligatoria
+- Todo cambio debe reflejarse en:
+  - Erflow (modelo MCP)
+  - schema/schema_erflow.sql
+  - schema/schema_erflow.dbml
+  - data/seed_erflow.sql
+
+Antes de aplicar cambios, validar que no rompan FKs ni nombres acordados.
