@@ -34,6 +34,17 @@ Table m_roles {
   fec_modf datetime [not null, default: 'CURRENT_TIMESTAMP']
 }
 
+Table m_roles_menus {
+  id_rol_menu int [pk, increment, unique, not null]
+  id_rol int [not null]
+  id_menu int [not null]
+  desc_usuario_crea varchar(255) [not null]
+  desc_usuario_modf varchar(255) [not null]
+  fec_creacion datetime [not null, default: 'CURRENT_TIMESTAMP']
+  fec_modf int [not null]
+  id_estado tinyint [not null]
+}
+
 Table m_roles_opciones {
   id_rol_opcion int [pk, increment, not null]
   id_menu int [not null]
@@ -83,6 +94,9 @@ Ref: m_opciones.id_menu > m_menus.id_menu
 Ref: m_menus.id_estado > m_estados.id_estado
 Ref: m_opciones.id_estado > m_estados.id_estado
 Ref: m_roles.id_estado > m_estados.id_estado
+Ref: m_roles_menus.id_rol > m_roles.id_rol
+Ref: m_roles_menus.id_menu > m_menus.id_menu
+Ref: m_roles_menus.id_estado > m_estados.id_estado
 Ref: m_roles_opciones.id_rol > m_roles.id_rol
 Ref: m_roles_opciones.id_menu, id_opcion > m_opciones.id_menu, id_opcion
 Ref: t_usuarios.id_estado > m_estados.id_estado

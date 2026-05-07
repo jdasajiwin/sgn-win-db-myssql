@@ -5,6 +5,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS t_usuario_rol;
 DROP TABLE IF EXISTS m_roles_opciones;
+DROP TABLE IF EXISTS m_roles_menus;
 DROP TABLE IF EXISTS t_usuarios;
 DROP TABLE IF EXISTS m_estados;
 DROP TABLE IF EXISTS m_roles;
@@ -67,6 +68,28 @@ CREATE TABLE m_roles (
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id_rol),
   CONSTRAINT fk_m_estados_m_roles
+    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
+) ENGINE=InnoDB;
+
+CREATE TABLE m_roles_menus (
+  id_rol_menu INT NOT NULL AUTO_INCREMENT,
+  id_rol INT NOT NULL,
+  id_menu INT NOT NULL,
+  desc_usuario_crea VARCHAR(255) NOT NULL,
+  desc_usuario_modf VARCHAR(255) NOT NULL,
+  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  fec_modf INT NOT NULL,
+  id_estado TINYINT NOT NULL,
+  PRIMARY KEY (id_rol_menu),
+  UNIQUE KEY uq_m_roles_menus_id_rol_menu (id_rol_menu),
+  KEY ix_m_roles_menus_id_rol (id_rol),
+  KEY ix_m_roles_menus_id_menu (id_menu),
+  KEY ix_m_roles_menus_id_estado (id_estado),
+  CONSTRAINT fk_m_roles_m_roles_menus
+    FOREIGN KEY (id_rol) REFERENCES m_roles (id_rol),
+  CONSTRAINT fk_m_menus_m_roles_menus
+    FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu),
+  CONSTRAINT fk_m_estados_m_roles_menus
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;
 

@@ -1,7 +1,7 @@
 -- Data de prueba (ordenada por dependencias FK)
 -- Mapeo funcional:
---   Menu:    numbering-range            -> id_menu = 1
---   Opcion:  numbering-range/add-range  -> (id_menu = 1, id_opcion = 1)
+--   Menu:    Gestion de usuarios         -> id_menu = 1
+--   Opcion:  numbering-range/add-range   -> (id_menu = 1, id_opcion = 1)
 --   Rol:     admin                      -> id_rol = 1
 --   Usuario: 1                          -> id_usuario = 1
 
@@ -20,9 +20,15 @@ ON DUPLICATE KEY UPDATE
 INSERT INTO m_menus (
   id_menu, id_sub_menu, desc_menu, desc_ruta, id_estado
 )
-VALUES (
-  1, null, 'numbering-range', 'numbering-range', 1
-)
+VALUES
+  (1, null, 'Gestion de usuarios', '/gestion-usuarios', 1),
+  (2, null, 'Trazabilidad de eventos', '/trazabilidad', 1),
+  (3, null, 'Rangos de numeracion', '/rango-numeracion', 1),
+  (4, null, 'Numeros telefonicos', '/asignar-numero', 1),
+  (5, null, 'Portabilidad', '/portabilidad', 1),
+  (6, null, 'Contingencia de activacion Freeswitch', '/contingencia', 1),
+  (7, 6, 'Numeros WI NET', '/contingencia/winet', 1),
+  (8, 6, 'Numeros portados', '/contingencia/numeros-portados', 1)
 ON DUPLICATE KEY UPDATE
   id_sub_menu = VALUES(id_sub_menu),
   desc_menu = VALUES(desc_menu),
@@ -32,9 +38,15 @@ ON DUPLICATE KEY UPDATE
 INSERT INTO m_opciones (
   id_opcion, id_menu, desc_opcion, desc_ruta, id_estado
 )
-VALUES (
-  1, 1, 'Numero de rango', 'numbering-range.add-range', 1
-)
+VALUES
+  (1, 1, 'Gestion de usuarios', '/gestion-usuarios', 1),
+  (2, 2, 'Trazabilidad de eventos', '/trazabilidad', 1),
+  (3, 3, 'Rangos de numeracion', '/rango-numeracion', 1),
+  (4, 4, 'Numeros telefonicos', '/asignar-numero', 1),
+  (5, 5, 'Portabilidad', '/portabilidad', 1),
+  (6, 6, 'Contingencia de activacion Freeswitch', '/contingencia', 1),
+  (7, 7, 'Numeros WI NET', '/contingencia/winet', 1),
+  (8, 8, 'Numeros portados', '/contingencia/numeros-portados', 1)
 ON DUPLICATE KEY UPDATE
   id_opcion = VALUES(id_opcion),
   id_menu = VALUES(id_menu),
@@ -47,6 +59,28 @@ VALUES (1, 'admin', 1)
 ON DUPLICATE KEY UPDATE
   desc_rol = VALUES(desc_rol),
   id_estado = VALUES(id_estado);
+
+INSERT INTO m_roles_menus (
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, id_estado
+)
+VALUES
+  (1, 1, 1, 'seed', 'seed', 0, 1),
+  (2, 1, 2, 'seed', 'seed', 0, 1),
+  (3, 1, 3, 'seed', 'seed', 0, 1),
+  (4, 1, 4, 'seed', 'seed', 0, 1),
+  (5, 1, 5, 'seed', 'seed', 0, 1),
+  (6, 1, 6, 'seed', 'seed', 0, 1),
+  (7, 1, 7, 'seed', 'seed', 0, 1),
+  (8, 1, 8, 'seed', 'seed', 0, 1)
+ON DUPLICATE KEY UPDATE
+  id_rol = VALUES(id_rol),
+  id_menu = VALUES(id_menu),
+  desc_usuario_modf = VALUES(desc_usuario_modf),
+  fec_modf = VALUES(fec_modf),
+  id_estado = VALUES(id_estado);
+
+-- Limpieza: m_roles_opciones ya no se puebla en seed
+DELETE FROM m_roles_opciones;
 
 INSERT INTO t_usuarios (
   id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado,
@@ -65,15 +99,6 @@ ON DUPLICATE KEY UPDATE
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
--- 2) Relacion rol-opcion
-INSERT INTO m_roles_opciones (
-  id_rol_opcion, id_menu, id_opcion, id_rol
-)
-VALUES (1, 1, 1, 1)
-ON DUPLICATE KEY UPDATE
-  id_menu = VALUES(id_menu),
-  id_opcion = VALUES(id_opcion),
-  id_rol = VALUES(id_rol);
 
 -- 3) Relacion usuario-rol
 INSERT INTO t_usuario_rol (
