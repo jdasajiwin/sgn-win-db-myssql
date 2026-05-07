@@ -6,10 +6,10 @@ CREATE PROCEDURE spl_m_roles_menus_listar(
 )
 BEGIN
 
-	 SELECT  MNS.desc_menu
-			,desc_ruta
-            ,MNS.id_menu
-            ,MNS.id_sub_menu
+	 SELECT  MNS.cod_menu
+			,MNS.cod_sub_menu
+			,MNS.desc_menu
+			,desc_ruta 
      FROM m_roles_menus 		 AS MROL
      INNER JOIN m_menus			 AS MNS
      ON MROL.id_menu=MNS.id_menu
