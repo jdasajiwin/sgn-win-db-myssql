@@ -1,1 +1,1 @@
-SELECT * FROM m_menus
+SELECT * FROM t_usuarios;
