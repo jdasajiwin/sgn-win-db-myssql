@@ -7,12 +7,21 @@
 
 START TRANSACTION;
 
--- 1) Catalogo de estados (debe ir primero por FKs)
-INSERT INTO m_estados (id_estado, cod_estado, desc_estado, flg_activo)
-VALUES
-  (0, 'INA', 'Inactivo', b'1'),
-  (1, 'ACT', 'Activo', b'1')
+-- 0) Tipo de estado (padre de m_estados)
+INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
+VALUES (1, 'GEN', 1, 1)
 ON DUPLICATE KEY UPDATE
+  cod_tipo_estado = VALUES(cod_tipo_estado),
+  desc_tipo_estado = VALUES(desc_tipo_estado),
+  flc_activo = VALUES(flc_activo);
+
+-- 1) Catalogo de estados
+INSERT INTO m_estados (id_estado, id_tipo_estado, cod_estado, desc_estado, flg_activo)
+VALUES
+  (0, 1, 'INA', 'Inactivo', 1),
+  (1, 1, 'ACT', 'Activo', 1)
+ON DUPLICATE KEY UPDATE
+  id_tipo_estado = VALUES(id_tipo_estado),
   cod_estado = VALUES(cod_estado),
   desc_estado = VALUES(desc_estado),
   flg_activo = VALUES(flg_activo);
@@ -39,7 +48,7 @@ ON DUPLICATE KEY UPDATE
   id_estado = VALUES(id_estado);
 
 INSERT INTO m_opciones (
-  id_opcion, id_menu, cod_menu, desc_opcion, desc_ruta, id_estado
+  id_menu, id_opcion, cod_menu, desc_opcion, desc_ruta, id_estado
 )
 VALUES
   (1, 1, LEFT(REGEXP_REPLACE(UPPER('Gestion de usuarios'), '[^A-Z0-9]', ''), 12), 'Gestion de usuarios', '/gestion-usuarios', 1),
@@ -51,8 +60,6 @@ VALUES
   (7, 7, LEFT(REGEXP_REPLACE(UPPER('Numeros WI NET'), '[^A-Z0-9]', ''), 12), 'Numeros WI NET', '/contingencia/winet', 1),
   (8, 8, LEFT(REGEXP_REPLACE(UPPER('Numeros portados'), '[^A-Z0-9]', ''), 12), 'Numeros portados', '/contingencia/numeros-portados', 1)
 ON DUPLICATE KEY UPDATE
-  id_opcion = VALUES(id_opcion),
-  id_menu = VALUES(id_menu),
   cod_menu = VALUES(cod_menu),
   desc_opcion = VALUES(desc_opcion),
   desc_ruta = VALUES(desc_ruta),
@@ -124,7 +131,11 @@ ON DUPLICATE KEY UPDATE
 COMMIT;
 
 -- Validacion rapida
-SELECT 'm_menus' AS tabla, id_menu FROM m_menus WHERE id_menu = 1
+SELECT 'm_tipo_estado' AS tabla, id_tipo_estado FROM m_tipo_estado WHERE id_tipo_estado = 1
+UNION ALL
+SELECT 'm_estados', id_estado FROM m_estados WHERE id_estado = 1
+UNION ALL
+SELECT 'm_menus', id_menu FROM m_menus WHERE id_menu = 1
 UNION ALL
 SELECT 'm_roles', id_rol FROM m_roles WHERE id_rol = 1
 UNION ALL
