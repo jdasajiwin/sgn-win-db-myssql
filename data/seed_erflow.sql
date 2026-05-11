@@ -9,7 +9,9 @@ START TRANSACTION;
 
 -- 0) Tipo de estado (padre de m_estados)
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
-VALUES (1, 'GEN', 1, 1)
+VALUES
+  (1, 'GEN', 'General', 1),
+  (2, 'TPSRV', 'Tipo proveedor servicio', 1)
 ON DUPLICATE KEY UPDATE
   cod_tipo_estado = VALUES(cod_tipo_estado),
   desc_tipo_estado = VALUES(desc_tipo_estado),
@@ -19,7 +21,9 @@ ON DUPLICATE KEY UPDATE
 INSERT INTO m_estados (id_estado, id_tipo_estado, cod_estado, desc_estado, flg_activo)
 VALUES
   (0, 1, 'INA', 'Inactivo', 1),
-  (1, 1, 'ACT', 'Activo', 1)
+  (1, 1, 'ACT', 'Activo', 1),
+  (2, 2, 'FJX', 'Fijo', 1),
+  (3, 2, 'MVL', 'Móvil', 1)  
 ON DUPLICATE KEY UPDATE
   id_tipo_estado = VALUES(id_tipo_estado),
   cod_estado = VALUES(cod_estado),
@@ -131,7 +135,7 @@ ON DUPLICATE KEY UPDATE
 COMMIT;
 
 -- Validacion rapida
-SELECT 'm_tipo_estado' AS tabla, id_tipo_estado FROM m_tipo_estado WHERE id_tipo_estado = 1
+SELECT 'm_tipo_estado' AS tabla, id_tipo_estado FROM m_tipo_estado WHERE id_tipo_estado IN (1, 2)
 UNION ALL
 SELECT 'm_estados', id_estado FROM m_estados WHERE id_estado = 1
 UNION ALL

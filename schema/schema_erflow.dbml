@@ -99,7 +99,7 @@ Table m_roles_opciones {
 Table m_tipo_estado {
   id_tipo_estado int [pk, increment, unique, not null]
   cod_tipo_estado varchar(12) [not null]
-  desc_tipo_estado int [not null]
+  desc_tipo_estado varchar(255) [not null]
   flc_activo bigint [not null]
 }
 

@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE m_tipo_estado (
   id_tipo_estado INT NOT NULL AUTO_INCREMENT,
   cod_tipo_estado VARCHAR(12) NOT NULL,
-  desc_tipo_estado INT NOT NULL,
+  desc_tipo_estado VARCHAR(255) NOT NULL,
   flc_activo BIGINT NOT NULL,
   PRIMARY KEY (id_tipo_estado)
 ) ENGINE=InnoDB;
