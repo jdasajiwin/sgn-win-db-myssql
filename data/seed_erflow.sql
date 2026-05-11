@@ -7,8 +7,9 @@
 --   Contingencia activacion freeswitch (7) -> Numeros WI NET (8), Numeros Portados (9)
 --   Mantenimientos (10) -> Parametros SGN, Proveedores, Comercializador, Operadores,
 --                          Motivo cambio estado, Parametros Freeswitch (11-16)
--- Rol admin (id_rol=1): todos los menus y opciones anteriores.
--- Usuario prueba: id_usuario = 1
+-- Roles: SuperAdmin (1), Admin TI (2), Gestor de telefonia (3), Supervisor NOC (4), Operador NOC (5).
+-- Menus y opciones solo asignados a SuperAdmin (id_rol=1).
+-- t_usuario_rol: usuario principal (1) -> SuperAdmin. Usuario Fuyu Collantes (2) sin rol en seed.
 
 START TRANSACTION;
 
@@ -91,7 +92,12 @@ ON DUPLICATE KEY UPDATE
   id_estado = VALUES(id_estado);
 
 INSERT INTO m_roles (id_rol, cod_rol, desc_rol, id_estado)
-VALUES (1, LEFT(REGEXP_REPLACE(UPPER('admin'), '[^A-Z0-9]', ''), 12), 'admin', 1)
+VALUES
+  (1, LEFT(REGEXP_REPLACE(UPPER('SuperAdmin'), '[^A-Z0-9]', ''), 12), 'SuperAdmin', 1),
+  (2, LEFT(REGEXP_REPLACE(UPPER('Admin TI'), '[^A-Z0-9]', ''), 12), 'Admin TI', 1),
+  (3, LEFT(REGEXP_REPLACE(UPPER('Gestor de telefonia'), '[^A-Z0-9]', ''), 12), 'Gestor de telefonía', 1),
+  (4, LEFT(REGEXP_REPLACE(UPPER('Supervisor NOC'), '[^A-Z0-9]', ''), 12), 'Supervisor NOC', 1),
+  (5, LEFT(REGEXP_REPLACE(UPPER('Operador NOC'), '[^A-Z0-9]', ''), 12), 'Operador NOC', 1)
 ON DUPLICATE KEY UPDATE
   cod_rol = VALUES(cod_rol),
   desc_rol = VALUES(desc_rol),
@@ -164,8 +170,24 @@ ON DUPLICATE KEY UPDATE
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
+INSERT INTO t_usuarios (
+  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado,
+  desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
+)
+VALUES (
+  2, 'fuyu.collantes', 'Fuyu', 'Collantes', 'fuyu.collantes@outlook.com', 1,
+  CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+)
+ON DUPLICATE KEY UPDATE
+  desc_usuario = VALUES(desc_usuario),
+  desc_nombres = VALUES(desc_nombres),
+  desc_apellidos = VALUES(desc_apellidos),
+  desc_email = VALUES(desc_email),
+  id_estado = VALUES(id_estado),
+  desc_usuario_modf = CURRENT_USER(),
+  fec_modf = CURRENT_TIMESTAMP;
 
--- 3) Relacion usuario-rol
+-- 3) Relacion usuario-rol (solo SuperAdmin al usuario principal)
 INSERT INTO t_usuario_rol (
   id_usuario_rol, id_rol, id_usuario, id_estado,
   desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
@@ -190,6 +212,8 @@ SELECT 'm_estados', id_estado FROM m_estados WHERE id_estado = 1
 UNION ALL
 SELECT 'm_menus', id_menu FROM m_menus WHERE id_menu IN (1, 16)
 UNION ALL
-SELECT 'm_roles', id_rol FROM m_roles WHERE id_rol = 1
+SELECT 'm_roles_superadmin', id_rol FROM m_roles WHERE id_rol = 1
 UNION ALL
-SELECT 't_usuarios', id_usuario FROM t_usuarios WHERE id_usuario = 1;
+SELECT 'm_roles_total', id_rol FROM m_roles WHERE id_rol = 5
+UNION ALL
+SELECT 't_usuarios', id_usuario FROM t_usuarios WHERE id_usuario IN (1, 2);
