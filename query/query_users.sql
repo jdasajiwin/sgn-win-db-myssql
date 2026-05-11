@@ -1,1 +1,1 @@
-SELECT * FROM t_usuarios;
+SELECT * FROM m_tipo_estado;
