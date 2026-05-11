@@ -11,7 +11,15 @@ START TRANSACTION;
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
 VALUES
   (1, 'GEN', 'General', 1),
-  (2, 'TPSRV', 'Tipo proveedor servicio', 1)
+  (2, 'TPSRV', 'Tipo proveedor servicio', 1),
+  (3, 'TPZON', 'Tipo de Zona', 1),
+  (4, 'TPROV', 'Tipo de proveedor numeración', 1),
+  (5, 'TPCOM', 'Tipo de comercializador', 1),
+  (6, 'TPESR', 'Estado Rango', 1),
+  (7, 'TPFCR', 'Fácil recordación', 1),
+  (8, 'TPDOC', 'Tipo de documento', 1),
+  (9, 'TPSTN', 'Tipo estado de número', 1),
+  (10, 'TPMVC', 'Motivo Cambio', 1)
 ON DUPLICATE KEY UPDATE
   cod_tipo_estado = VALUES(cod_tipo_estado),
   desc_tipo_estado = VALUES(desc_tipo_estado),
@@ -23,12 +31,48 @@ VALUES
   (0, 1, 'INA', 'Inactivo', 1),
   (1, 1, 'ACT', 'Activo', 1),
   (2, 2, 'FJX', 'Fijo', 1),
-  (3, 2, 'MVL', 'Móvil', 1)  
+  (3, 2, 'MVL', 'Móvil', 1),
+  (4,3, 'RUR', 'Rural', 1),
+  (5,3, 'URB', 'Urbano', 1),
+  (6,4, 'WI', 'WI NET TELECOM', 1),
+  (7,4, 'ON', 'ON', 1),
+  (8,4, 'GTD', 'GTD', 1),
+  (9,5, 'WIN', 'WIN', 1),
+  (10,6, 'HAB', 'Habilitado', 1),
+  (11,6, 'NOH', 'No habilitado', 1),
+  (12,7, 'S', 'Sí', 1),
+  (13,7, 'N', 'No', 1),
+  (14,8, 'DNI', 'Documento Nacional de Identidad', 1),
+  (15,8, 'CE', 'Carnet de Extranjería', 1),
+  (16,8, 'RUC', 'Registro Único de Contribuyentes', 1),
+  (17,8, 'PAS', 'Pasaporte', 1),
+  (18,8, 'CIP', 'Carnet de Identidad Personal', 1),
+  (19,9, 'NOH', 'No habilitado', 1),
+  (20,9, 'DIS', 'Disponible', 1),
+  (21,9, 'PRR', 'Pre-reserva', 1),
+  (22,9, 'BLQ', 'Bloqueado', 1),
+  (23,9, 'PPB', 'Pendiente portabilidad', 1),
+  (24,9, 'EUS', 'En uso', 1),
+  (25,9, 'BAJ', 'Baja', 1),
+  (26,9, 'BLP', 'Bloqueado port in', 1),
+  (27,9, 'POT', 'Port out', 1),
+  (28,10, 'CAMTIT', 'Cambio de titularidad', 1),
+  (29,10, 'INCAPI', 'Incidencia con las APIs', 1),
+  (30,10, 'SOLVNO', 'A solicitud de VNO', 1),
+  (31,10, 'SOLOSP', 'A solicitud de OSIPTEL', 1),
+  (32,10, 'SOLIND', 'A solicitud de INDECOPI', 1),
+  (33,10, 'CONTFRE', 'Contingencia Freeswitch', 1),
+  (34,10, 'CAMNUM', 'Cambio de número', 1),
+  (35,10,'CAMNUMPOR','Cambio de número por portabilidad' ,1)
+
 ON DUPLICATE KEY UPDATE
   id_tipo_estado = VALUES(id_tipo_estado),
   cod_estado = VALUES(cod_estado),
   desc_estado = VALUES(desc_estado),
   flg_activo = VALUES(flg_activo);
+
+
+
 
 -- 2) Catalogos base
 INSERT INTO m_menus (
