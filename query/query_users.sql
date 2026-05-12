@@ -1,0 +1,1 @@
+SELECT * FROM m_tipo_estado;
