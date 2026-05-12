@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS m_menus;
 DROP TABLE IF EXISTS m_roles;
 DROP TABLE IF EXISTS m_estados;
 DROP TABLE IF EXISTS m_tipo_estado;
+DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -170,3 +171,26 @@ CREATE TABLE t_usuario_rol (
   CONSTRAINT fk_t_usuarios_t_usuario_rol
     FOREIGN KEY (id_usuario) REFERENCES t_usuarios (id_usuario)
 ) ENGINE=InnoDB;
+
+CREATE TABLE `t_trazabilidad_eventos` (
+  `id_trazabilidad` BIGINT NOT NULL AUTO_INCREMENT,
+  `id_usuario` INT NOT NULL,
+  `id_menu` INT NOT NULL,
+  `evento` VARCHAR(100) NOT NULL,
+  `detalle` TEXT NULL,
+  `fec_registro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `datos_anteriores` JSON NOT NULL,
+  `datos_nuevos` JSON NOT NULL,
+  `ip_origen` VARCHAR(45) NULL,
+  `creado_por_api` BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (`id_trazabilidad`),
+  CONSTRAINT `fk_t_trazabilidad_eventos_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `t_usuarios` (`id_usuario`),
+  CONSTRAINT `fk_t_trazabilidad_eventos_menu`
+    FOREIGN KEY (`id_menu`)
+    REFERENCES `m_menus` (`id_menu`)
+);
+
+
+
