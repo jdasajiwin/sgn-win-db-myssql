@@ -15,7 +15,7 @@ BEGIN
      ON MROL.id_menu=MNS.id_menu
      WHERE MROL.id_estado=1
 		AND MNS.id_estado=1
-        AND MROL.id_rol=1;
+        AND MROL.id_rol=p_id_rol;
     
 END$$
 DELIMITER ;
