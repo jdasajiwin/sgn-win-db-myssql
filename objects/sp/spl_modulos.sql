@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS sp_modulos_listar;
+DROP PROCEDURE IF EXISTS spl_modulos;
 DELIMITER $$
 
-CREATE PROCEDURE sp_modulos_listar(
+CREATE PROCEDURE spl_modulos(
     IN p_cod_menu INT
 )
 BEGIN

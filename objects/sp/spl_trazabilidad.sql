@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS sp_trazabilidad_listar;
+DROP PROCEDURE IF EXISTS spl_trazabilidad;
 DELIMITER $$
 
-CREATE PROCEDURE sp_trazabilidad_listar(
+CREATE PROCEDURE spl_trazabilidad(
     IN p_fecha_desde DATETIME,
     IN p_fecha_hasta DATETIME,
     IN p_id_modulo INT,

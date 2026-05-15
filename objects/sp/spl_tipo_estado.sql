@@ -1,6 +1,6 @@
-DROP PROCEDURE  IF EXISTS  sp_tipo_estado_listar;
+DROP PROCEDURE  IF EXISTS  spl_tipo_estado;
 DELIMITER $$
-CREATE PROCEDURE sp_tipo_estado_listar(
+CREATE PROCEDURE spl_tipo_estado(
 IN p_id_estado INT
 )
 BEGIN

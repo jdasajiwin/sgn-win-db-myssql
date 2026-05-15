@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS sp_trazabilidad_insert;
+DROP PROCEDURE IF EXISTS spi_trazabilidad;
 
 DELIMITER $$
-CREATE PROCEDURE sp_trazabilidad_insert(
+CREATE PROCEDURE spi_trazabilidad(
     IN p_id_usuario INT,
     IN p_id_menu INT,
     IN p_evento VARCHAR(100),
