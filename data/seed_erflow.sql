@@ -13,6 +13,37 @@
 
 START TRANSACTION;
 
+-- DEPARTAMENTOS
+
+INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
+	 ('Amazonas','01','41','NO',NOW(),NOW()),
+	 ('Áncash','02','43','SI',NOW(),NOW()),
+	 ('Apurímac','03','83','NO',NOW(),NOW()),
+	 ('Arequipa','04','54','SI',NOW(),NOW()),
+	 ('Ayacucho','05','66','NO',NOW(),NOW()),
+	 ('Cajamarca','06','76','NO',NOW(),NOW()),
+	 ('Cusco','07','84','SI',NOW(),NOW()),
+	 ('Huancavelica','08','67','NO',NOW(),NOW()),
+	 ('Huánuco','09','62','NO',NOW(),NOW()),
+	 ('Ica','10','56','NO',NOW(),NOW());
+INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
+	 ('Junín','11','64','SI',NOW(),NOW()),
+	 ('La Libertad','12','44','SI',NOW(),NOW()),
+	 ('Lambayeque','13','74','SI',NOW(),NOW()),
+	 ('Lima','14','1','SI',NOW(),NOW()),
+	 ('Loreto','15','65','NO',NOW(),NOW()),
+	 ('Madre de Dios','16','82','NO',NOW(),NOW()),
+	 ('Moquegua','17','53','NO',NOW(),NOW()),
+	 ('Pasco','18','63','NO',NOW(),NOW()),
+	 ('Piura','19','73','SI',NOW(),NOW()),
+	 ('Puno','20','51','NO',NOW(),NOW());
+INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
+	 ('San Martín','21','42','NO',NOW(),NOW()),
+	 ('Tacna','22','42','NO',NOW(),NOW()),
+	 ('Tumbes','23','72','NO',NOW(),NOW()),
+	 ('Ucayali','24','61','NO',NOW(),NOW()),
+	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',NOW(),NOW());
+
 -- 0) Tipo de estado (padre de m_estados)
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
 VALUES

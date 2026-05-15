@@ -13,7 +13,7 @@ BEGIN
         fec_modf,
         desc_usuario_crea,
         desc_usuario_modf
-    FROM sgn.m_menus
+    FROM m_menus
     WHERE id_sub_menu IS NULL
       AND id_estado = 1
       AND (p_cod_menu IS NULL OR cod_menu = p_cod_menu);

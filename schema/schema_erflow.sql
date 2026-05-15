@@ -17,6 +17,17 @@ DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+CREATE TABLE m_departamento (
+  `id_departamento` int NOT NULL AUTO_INCREMENT,
+  `nombre_departamento` varchar(150) NOT NULL,
+  `cod_ubigeo_departamento` char(10) NOT NULL,
+  `cod_tel_departamento` char(10) NOT NULL,
+  `cobertura_departamento` char(10) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_departamento`)
+) ENGINE=InnoDB
+
 CREATE TABLE m_tipo_estado (
   id_tipo_estado INT NOT NULL AUTO_INCREMENT,
   cod_tipo_estado VARCHAR(12) NOT NULL,
@@ -29,7 +40,7 @@ CREATE TABLE m_estados (
   id_estado TINYINT NOT NULL,
   id_tipo_estado INT NOT NULL,
   cod_estado VARCHAR(12) NOT NULL,
-  desc_estado VARCHAR(20) NOT NULL,
+  desc_estado VARCHAR(50) NOT NULL,
   desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
