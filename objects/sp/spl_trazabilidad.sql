@@ -11,7 +11,7 @@ BEGIN
 
     SELECT 
         tr.id_trazabilidad,
-        tr.evento,
+        mevent.desc_evento as evento,
         tr.detalle,
         tr.fec_registro,
         tr.ip_origen,
@@ -36,6 +36,9 @@ BEGIN
 
     INNER JOIN m_menus m
         ON m.id_menu = tr.id_menu
+        
+     LEFT JOIN m_eventos mevent
+        on mevent.id_evento = tr.id_evento
 
     LEFT JOIN m_menus mp
         ON mp.id_menu = m.id_menu_padre
@@ -63,6 +66,7 @@ BEGIN
         )
 
     ORDER BY tr.fec_registro DESC;
+
 
 END$$
 
