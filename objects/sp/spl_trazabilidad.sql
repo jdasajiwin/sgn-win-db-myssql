@@ -38,7 +38,7 @@ BEGIN
         ON m.id_menu = tr.id_menu
 
     LEFT JOIN m_menus mp
-        ON mp.id_menu = m.id_sub_menu
+        ON mp.id_menu = m.id_menu_padre
 
     WHERE
         (

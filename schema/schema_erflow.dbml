@@ -40,7 +40,7 @@ Table m_menus {
   id_menu int [pk, increment, not null]
   cod_menu varchar(12) [unique, not null]
   cod_sub_menu varchar(12)
-  id_sub_menu int
+  id_menu_padre int
   desc_menu varchar(150) [not null]
   desc_ruta varchar(200) [not null]
   desc_usuario_crea varchar(50) [not null, default: 'CURRENT_USER()']

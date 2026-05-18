@@ -17,6 +17,25 @@ DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+CREATE TABLE `m_eventos` (
+  `id_evento` INT NOT NULL AUTO_INCREMENT,
+  `cod_evento` VARCHAR(50) NOT NULL,
+  `desc_evento` VARCHAR(255) NOT NULL,
+  `tipo_evento` ENUM('FORMULARIO', 'API', 'JOB', 'OTRO') NOT NULL DEFAULT 'OTRO',
+  `desc_usuario_crea` VARCHAR(50) NOT NULL,
+  `desc_usuario_modf` VARCHAR(50) NOT NULL,
+  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_estado` TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_evento`),
+  UNIQUE KEY `uq_m_eventos_cod_evento` (`cod_evento`),
+  KEY `ix_m_eventos_tipo_evento` (`tipo_evento`),
+  CONSTRAINT `fk_m_estados_m_eventos`
+    FOREIGN KEY (`id_estado`)
+    REFERENCES `m_estados` (`id_estado`)
+) ENGINE=InnoDB;
+
+
 CREATE TABLE m_departamento (
   `id_departamento` int NOT NULL AUTO_INCREMENT,
   `nombre_departamento` varchar(150) NOT NULL,
@@ -185,23 +204,28 @@ CREATE TABLE t_usuario_rol (
 
 CREATE TABLE `t_trazabilidad_eventos` (
   `id_trazabilidad` BIGINT NOT NULL AUTO_INCREMENT,
+  `id_evento` INT NOT NULL,
   `id_usuario` INT NOT NULL,
   `id_menu` INT NOT NULL,
-  `evento` VARCHAR(100) NOT NULL,
   `detalle` TEXT NULL,
   `fec_registro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `datos_anteriores` JSON NOT NULL,
-  `datos_nuevos` JSON NOT NULL,
   `ip_origen` VARCHAR(45) NULL,
   `creado_por_api` BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`id_trazabilidad`),
+  KEY `ix_t_trazabilidad_eventos_id_evento` (`id_evento`),
+  KEY `ix_t_trazabilidad_eventos_id_usuario` (`id_usuario`),
+  KEY `ix_t_trazabilidad_eventos_fec_registro` (`fec_registro`),
+  KEY `ix_t_trazabilidad_eventos_creado_por_api` (`creado_por_api`),
+  CONSTRAINT `fk_t_trazabilidad_eventos_evento`
+    FOREIGN KEY (`id_evento`)
+    REFERENCES `m_eventos` (`id_evento`),
   CONSTRAINT `fk_t_trazabilidad_eventos_usuario`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `t_usuarios` (`id_usuario`),
   CONSTRAINT `fk_t_trazabilidad_eventos_menu`
     FOREIGN KEY (`id_menu`)
     REFERENCES `m_menus` (`id_menu`)
-);
+) ENGINE=InnoDB;
 
 
 

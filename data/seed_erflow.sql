@@ -113,7 +113,7 @@ ON DUPLICATE KEY UPDATE
 
 -- 2) Catalogos base
 INSERT INTO m_menus (
-  id_menu, cod_menu, cod_sub_menu, id_sub_menu, desc_menu, desc_ruta, id_estado
+  id_menu, cod_menu, cod_sub_menu, id_menu_padre, desc_menu, desc_ruta, id_estado
 )
 VALUES
   (1, LEFT(REGEXP_REPLACE(UPPER('Usuarios'), '[^A-Z0-9]', ''), 12), NULL, NULL, 'Usuarios', '/usuarios', 1),
@@ -135,7 +135,7 @@ VALUES
 ON DUPLICATE KEY UPDATE
   cod_menu = VALUES(cod_menu),
   cod_sub_menu = VALUES(cod_sub_menu),
-  id_sub_menu = VALUES(id_sub_menu),
+  id_menu_padre = VALUES(id_menu_padre),
   desc_menu = VALUES(desc_menu),
   desc_ruta = VALUES(desc_ruta),
   id_estado = VALUES(id_estado);
