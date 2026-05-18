@@ -56,7 +56,7 @@ CREATE TABLE m_menus (
   id_menu INT NOT NULL AUTO_INCREMENT,
   cod_menu VARCHAR(12) NOT NULL,
   cod_sub_menu VARCHAR(12) NULL,
-  id_sub_menu INT NULL,
+  id_menu_padre INT NULL,
   desc_menu VARCHAR(150) NOT NULL,
   desc_ruta VARCHAR(200) NOT NULL,
   desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
