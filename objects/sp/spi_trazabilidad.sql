@@ -13,24 +13,29 @@ CREATE PROCEDURE spi_trazabilidad(
 )
 BEGIN
     INSERT INTO t_trazabilidad_eventos (
-        id_usuario,
-        id_menu,
-        evento,
-        detalle,
-        datos_anteriores,
-        datos_nuevos,
-        ip_origen,
-        creado_por_api
-    ) VALUES (
-        p_id_usuario,
-        p_id_menu,
-        p_evento,
-        p_detalle,
-        p_datos_anteriores,
-        p_datos_nuevos,
-        p_ip_origen,
-        p_creado_por_api
-    );
+        IN p_id_usuario INT,
+        IN p_id_menu INT,
+        IN p_id_evento INT,
+        IN p_detalle TEXT,
+        IN p_ip_origen VARCHAR(45),
+        IN p_creado_por_api TINYINT(1)
+    )
+    BEGIN
+        INSERT INTO t_trazabilidad_eventos (
+            id_usuario,
+            id_menu,
+            id_evento,
+            detalle,
+            ip_origen,
+            creado_por_api
+        ) VALUES (
+            p_id_usuario,
+            p_id_menu,
+            p_id_evento,
+            p_detalle,
+            p_ip_origen,
+            p_creado_por_api
+        );
 
 END$$
 DELIMITER ;
