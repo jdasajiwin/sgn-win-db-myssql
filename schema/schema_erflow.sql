@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE `m_eventos` (
+CREATE TABLE IF NOT EXISTS `m_eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `cod_evento` VARCHAR(50) NOT NULL,
   `desc_evento` VARCHAR(255) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `m_eventos` (
     REFERENCES `m_estados` (`id_estado`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE t_auditoria (
+CREATE TABLE IF NOT EXISTS t_auditoria (
     id_auditoria BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_evento INT NOT NULL,
     modulo VARCHAR(100) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE t_auditoria (
 
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_departamento (
+CREATE TABLE IF NOT EXISTS m_departamento (
   `id_departamento` int NOT NULL AUTO_INCREMENT,
   `nombre_departamento` varchar(150) NOT NULL,
   `cod_ubigeo_departamento` char(10) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE m_departamento (
   PRIMARY KEY (`id_departamento`)
 ) ENGINE=InnoDB
 
-CREATE TABLE m_tipo_estado (
+CREATE TABLE IF NOT EXISTS m_tipo_estado (
   id_tipo_estado INT NOT NULL AUTO_INCREMENT,
   cod_tipo_estado VARCHAR(12) NOT NULL,
   desc_tipo_estado VARCHAR(255) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE m_tipo_estado (
   PRIMARY KEY (id_tipo_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_estados (
+CREATE TABLE IF NOT EXISTS m_estados (
   id_estado TINYINT NOT NULL,
   id_tipo_estado INT NOT NULL,
   cod_estado VARCHAR(12) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE m_estados (
     FOREIGN KEY (id_tipo_estado) REFERENCES m_tipo_estado (id_tipo_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_menus (
+CREATE TABLE IF NOT EXISTS m_menus (
   id_menu INT NOT NULL AUTO_INCREMENT,
   cod_menu VARCHAR(12) NOT NULL,
   cod_sub_menu VARCHAR(12) NULL,
@@ -104,7 +104,7 @@ CREATE TABLE m_menus (
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_opciones (
+CREATE TABLE IF NOT EXISTS m_opciones (
   id_menu INT NOT NULL,
   id_opcion INT NOT NULL AUTO_INCREMENT,
   cod_menu VARCHAR(12) NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE m_opciones (
     FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_roles (
+CREATE TABLE IF NOT EXISTS m_roles (
   id_rol INT NOT NULL AUTO_INCREMENT,
   cod_rol VARCHAR(12) NOT NULL,
   desc_rol VARCHAR(150) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE m_roles (
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_roles_menus (
+CREATE TABLE IF NOT EXISTS m_roles_menus (
   id_rol_menu INT NOT NULL AUTO_INCREMENT,
   id_rol INT NOT NULL,
   id_menu INT NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE m_roles_menus (
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE t_usuarios (
+CREATE TABLE IF NOT EXISTS t_usuarios (
   id_usuario INT NOT NULL AUTO_INCREMENT,
   desc_apellidos VARCHAR(255) NOT NULL,
   desc_email VARCHAR(150) NULL,
@@ -178,7 +178,7 @@ CREATE TABLE t_usuarios (
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;
 
-CREATE TABLE m_roles_opciones (
+CREATE TABLE IF NOT EXISTS m_roles_opciones (
   id_rol_opcion INT NOT NULL AUTO_INCREMENT,
   id_rol INT NOT NULL,
   id_opcion INT NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE m_roles_opciones (
     FOREIGN KEY (id_menu, id_opcion) REFERENCES m_opciones (id_menu, id_opcion)
 ) ENGINE=InnoDB;
 
-CREATE TABLE t_usuario_rol (
+CREATE TABLE IF NOT EXISTS t_usuario_rol (
   id_usuario_rol INT NOT NULL AUTO_INCREMENT,
   id_rol INT NOT NULL,
   id_usuario INT NOT NULL,
@@ -217,7 +217,7 @@ CREATE TABLE t_usuario_rol (
     FOREIGN KEY (id_usuario) REFERENCES t_usuarios (id_usuario)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `t_trazabilidad_eventos` (
+CREATE TABLE IF NOT EXISTS `t_trazabilidad_eventos` (
   `id_trazabilidad` BIGINT NOT NULL AUTO_INCREMENT,
   `id_evento` INT NOT NULL,
   `id_usuario` INT NOT NULL,

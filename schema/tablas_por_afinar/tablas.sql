@@ -7,7 +7,7 @@
 /**************RANGO NUM****************************/
 
 
-CREATE TABLE m_operador (
+CREATE TABLE IF NOT EXISTS m_operador (
     id_operador INT PRIMARY KEY AUTO_INCREMENT,
     nombre_operador VARCHAR(150) NOT NULL,
     codigo_operador VARCHAR(20),
@@ -18,7 +18,7 @@ CREATE TABLE m_operador (
 )ENGINE=InnoDB;
 
 
-CREATE TABLE m_estado_proceso (
+CREATE TABLE IF NOT EXISTS m_estado_proceso (
     id_estado_proceso INT PRIMARY KEY AUTO_INCREMENT,
     nombre_estado VARCHAR(50)
 )ENGINE=InnoDB;
@@ -30,7 +30,7 @@ VALUES
 ('Completado'),
 ('Error');
 
-CREATE TABLE t_rango_numeracion (
+CREATE TABLE IF NOT EXISTS t_rango_numeracion (
     id_rango BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_tipo_servicio INT NOT NULL, 
     id_departamento INT NOT NULL,
@@ -87,9 +87,9 @@ CREATE TABLE t_rango_numeracion (
 
 
 
-CREATE TABLE t_numero_telefonico (
 
     id_numero BIGINT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS t_numero_telefonico (
     id_rango BIGINT NOT NULL,
     num_telefono BIGINT NOT NULL UNIQUE,
     facil_recordacion CHAR(1) DEFAULT 'N',
@@ -140,7 +140,7 @@ CREATE TABLE t_numero_telefonico (
         ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
-CREATE TABLE t_historial_numero (
+CREATE TABLE IF NOT EXISTS t_historial_numero (
     id_historial BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_numero BIGINT NOT NULL,
     estado_anterior INT,
@@ -153,7 +153,7 @@ CREATE TABLE t_historial_numero (
     ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
-CREATE TABLE t_numero_adjunto (
+CREATE TABLE IF NOT EXISTS t_numero_adjunto (
     id_adjunto BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_numero BIGINT NOT NULL,
     nombre_archivo VARCHAR(255),
