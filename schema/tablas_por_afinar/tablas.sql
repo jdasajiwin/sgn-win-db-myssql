@@ -169,9 +169,45 @@ CREATE TABLE IF NOT EXISTS t_numero_adjunto (
     ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
-CREATE INDEX idx_numero_telefono
-ON t_numero_telefonico(num_telefono);
-CREATE INDEX idx_numero_estado
+CREATE TABLE IF NOT EXISTS m_tipo_servicio (
+    id_tipo_servicio INT PRIMARY KEY AUTO_INCREMENT,
+    desc_tipo_servicio VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_tipo_zona (
+    id_tipo_zona INT PRIMARY KEY AUTO_INCREMENT,
+    desc_tipo_zona VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_proveedor_numeracion (
+    id_proveedor_numeracion INT PRIMARY KEY AUTO_INCREMENT,
+    desc_proveedor_numeracion VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_comercializador (
+    id_comercializador INT PRIMARY KEY AUTO_INCREMENT,
+    desc_comercializador VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_estado_rango (
+    id_estado_rango INT PRIMARY KEY AUTO_INCREMENT,
+    desc_estado_rango VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_tipo_doc (
+    id_tipo_doc SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    desc_tipo_doc VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_estado_numero (
+    id_estado_numero SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    desc_estado_numero VARCHAR(50)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_motivo_cambio (
+    id_motivo_cambio SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    desc_motivo_cambio VARCHAR(50)
+)ENGINE=InnoDB;
 ON t_numero_telefonico(id_estado_numero);
 CREATE INDEX idx_numero_rango
 ON t_numero_telefonico(id_rango);
