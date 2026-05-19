@@ -17,6 +17,48 @@ DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+CREATE TABLE `m_tipo_servicio` (
+  `id_tipo_servicio` int NOT NULL AUTO_INCREMENT,
+  `nombre_tipo_servicio` varchar(255) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_tipo_servicio`)
+) ENGINE=InnoDB ;
+
+
+CREATE TABLE `m_tipo_zona` (
+  `id_tipo_zona` int NOT NULL AUTO_INCREMENT,
+  `nombre_tipo_zona` varchar(255) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_tipo_zona`)
+) ENGINE=InnoDB ;
+
+CREATE TABLE `m_proveedor_numeracion` (
+  `id_proveedor_numeracion` int NOT NULL AUTO_INCREMENT,
+  `nombre_proveedor` varchar(255) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_proveedor_numeracion`)
+) ENGINE=InnoDB;
+
+
+CREATE TABLE `m_comercializador` (
+  `id_comercializador` int NOT NULL AUTO_INCREMENT,
+  `nombre_comercializador` varchar(255) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_comercializador`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `m_estado_rango` (
+  `id_estado_rango` int NOT NULL AUTO_INCREMENT,
+  `nombre_estado_rango` varchar(255) NOT NULL,
+  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_estado_rango`)
+) ENGINE=InnoDB ;
+
 CREATE TABLE `m_eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `cod_evento` VARCHAR(50) NOT NULL,
