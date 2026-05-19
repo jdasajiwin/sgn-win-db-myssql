@@ -208,22 +208,41 @@ CREATE TABLE IF NOT EXISTS m_motivo_cambio (
     id_motivo_cambio SMALLINT PRIMARY KEY AUTO_INCREMENT,
     desc_motivo_cambio VARCHAR(50)
 )ENGINE=InnoDB;
-ON t_numero_telefonico(id_estado_numero);
-CREATE INDEX idx_numero_rango
-ON t_numero_telefonico(id_rango);
-CREATE INDEX idx_rango_inicio_fin
-ON t_rango_numeracion(rango_inicial, rango_final);
-CREATE INDEX idx_rango_departamento
-ON t_rango_numeracion(id_departamento);
 
-CREATE INDEX idx_historial_numero
+
+CREATE INDEX ix_t_numero_telefonico_id_estado_numero
+ON t_numero_telefonico(id_estado_numero);
+CREATE INDEX ix_t_numero_telefonico_id_rango
+ON t_numero_telefonico(id_rango);
+CREATE INDEX ix_t_numero_telefonico_id_tipo_doc
+ON t_numero_telefonico(id_tipo_doc);
+CREATE INDEX ix_t_numero_telefonico_id_operador_cedente
+ON t_numero_telefonico(id_operador_cedente);
+CREATE INDEX ix_t_numero_telefonico_id_operador_receptor
+ON t_numero_telefonico(id_operador_receptor);
+CREATE INDEX ix_t_numero_telefonico_id_motivo_cambio
+ON t_numero_telefonico(id_motivo_cambio);
+CREATE INDEX ix_t_rango_numeracion_num_rango_inicial_num_rango_final
+ON t_rango_numeracion(num_rango_inicial, num_rango_final);
+
+
+CREATE INDEX ix_t_historial_numero_id_numero
 ON t_historial_numero(id_numero);
 
-CREATE INDEX idx_adjunto_numero
+CREATE INDEX ix_t_numero_adjunto_id_numero
 ON t_numero_adjunto(id_numero);
 
-CREATE INDEX idx_estado_rango
+CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio
+ON t_rango_numeracion(id_tipo_servicio);
+CREATE INDEX ix_t_rango_numeracion_id_departamento
+ON t_rango_numeracion(id_departamento);
+CREATE INDEX ix_t_rango_numeracion_id_tipo_zona
+ON t_rango_numeracion(id_tipo_zona);
+CREATE INDEX ix_t_rango_numeracion_id_proveedor_numeracion
+ON t_rango_numeracion(id_proveedor_numeracion);
+CREATE INDEX ix_t_rango_numeracion_id_comercializador
+ON t_rango_numeracion(id_comercializador);
+CREATE INDEX ix_t_rango_numeracion_id_estado_rango
 ON t_rango_numeracion(id_estado_rango);
+CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio_departamento_tipo_zona ON t_rango_numeracion (id_tipo_servicio, id_departamento, id_tipo_zona);
 
-CREATE INDEX idx_estado_proceso
-ON t_rango_numeracion(id_estado_proceso);
