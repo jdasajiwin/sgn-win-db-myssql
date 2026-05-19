@@ -246,3 +246,64 @@ CREATE INDEX ix_t_rango_numeracion_id_estado_rango
 ON t_rango_numeracion(id_estado_rango);
 CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio_departamento_tipo_zona ON t_rango_numeracion (id_tipo_servicio, id_departamento, id_tipo_zona);
 
+
+
+INSERT INTO m_tipo_servicio(desc_tipo_servicio)
+VALUES
+('Fijo'),
+('Móvil');
+
+INSERT INTO m_tipo_zona(desc_tipo_zona)
+VALUES
+('Rural'),
+('Urbano');
+
+
+INSERT INTO m_proveedor_numeracion(desc_proveedor_numeracion)
+VALUES
+('WI NET TELECOM'),
+('ON'),
+('GTD');
+
+INSERT INTO m_comercializador(desc_comercializador)
+VALUES
+('WIN');
+
+
+INSERT INTO m_estado_rango(desc_estado_rango)
+VALUES
+('Habilitado'),
+('Inhabilitado');
+
+INSERT INTO m_tipo_doc(desc_tipo_doc)
+VALUES
+('DNI'),
+('CE'),
+('RUC'),
+('Pasaporte'),
+('Carnet de identidad personal');
+
+
+INSERT INTO m_motivo_cambio(desc_motivo_cambio)
+VALUES
+('Cambio de titular'),
+('Incidenncia con las APIs'),
+('A solicitud del VNO'),
+('A solicitud de OSIPTEL'),
+('A solicitud de INDECOPI'),
+('Contingencia FreeSwitch'),
+('Cambio de numero'),
+('Cambio de numero por portabilidad');
+
+
+INSERT INTO m_estado_numero(desc_estado_numero)
+VALUES
+('No habilitado'),
+('Disponible'),
+('Pre-reserva'),
+('Bloqueado'),
+('Pendiente portabilidad'),
+('En uso'),
+('Baja'),
+('Bloqueado port in'),
+('Port out');
