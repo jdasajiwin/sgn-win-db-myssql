@@ -9,21 +9,21 @@
 
 CREATE TABLE IF NOT EXISTS m_operador (
     id_operador INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_operador VARCHAR(150) NOT NULL,
-    codigo_operador VARCHAR(20),
-    estado CHAR(1) DEFAULT 'A',
-    fec_crea DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fec_upd DATETIME DEFAULT CURRENT_TIMESTAMP
+    desc_operador VARCHAR(150) NOT NULL,
+    cod_enrutador VARCHAR(20),
+    flg_estado CHAR(1) DEFAULT 'A',
+    fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS m_estado_proceso (
     id_estado_proceso INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_estado VARCHAR(50)
+    desc_estado VARCHAR(50)
 )ENGINE=InnoDB;
 
-INSERT INTO m_estado_proceso(nombre_estado)
+INSERT INTO m_estado_proceso(desc_estado)
 VALUES
 ('Pendiente'),
 ('Procesando'),
@@ -37,104 +37,106 @@ CREATE TABLE IF NOT EXISTS t_rango_numeracion (
     id_tipo_zona INT NOT NULL,
     id_proveedor_numeracion INT NOT NULL,
     id_comercializador INT NOT NULL,
-    cant_numeros INT NOT NULL,
-    rango_inicial BIGINT NOT NULL,
-    rango_final BIGINT NOT NULL,
+    cant_numeros_generados INT NOT NULL,
+    num_rango_inicial BIGINT NOT NULL,
+    num_rango_final BIGINT NOT NULL,
+    fec_creacion_rango DATETIME NOT NULL,
     id_estado_rango INT NOT NULL,
     id_estado_proceso INT DEFAULT 1,
-    total_generados INT DEFAULT 0,
-    total_error INT DEFAULT 0,
+    cant_total_generados INT DEFAULT 0,
+    cant_total_error INT DEFAULT 0,
     fec_inicio_proceso DATETIME NULL,
     fec_fin_proceso DATETIME NULL,
-    desc_usuario_crea VARCHAR(100),
-    desc_host_crea VARCHAR(100),
-    desc_usuario_modf VARCHAR(100),
-    desc_host_modf VARCHAR(100),
+    id_usuario_creacion INT NOT NULL,
+    id_usuario_modificacion INT NOT NULL,
     fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
     nom_app VARCHAR(100),
     nom_app_modf VARCHAR(100),
-    FOREIGN KEY (id_tipo_servicio)
+    CONSTRAINT fk_m_tipo_servicio_t_rango_numeracion FOREIGN KEY (id_tipo_servicio)
         REFERENCES m_tipo_servicio(id_tipo_servicio)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_departamento)
+    CONSTRAINT fk_m_departamento_t_rango_numeracion FOREIGN KEY (id_departamento)
         REFERENCES m_departamento(id_departamento)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_tipo_zona)
+    CONSTRAINT fk_m_tipo_zona_t_rango_numeracion FOREIGN KEY (id_tipo_zona)
         REFERENCES m_tipo_zona(id_tipo_zona)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_proveedor_numeracion)
+    CONSTRAINT fk_m_proveedor_numeracion_t_rango_numeracion FOREIGN KEY (id_proveedor_numeracion)
         REFERENCES m_proveedor_numeracion(id_proveedor_numeracion)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_comercializador)
+    CONSTRAINT fk_m_comercializador_t_rango_numeracion FOREIGN KEY (id_comercializador)
         REFERENCES m_comercializador(id_comercializador)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_estado_rango)
+    CONSTRAINT fk_m_estado_rango_t_rango_numeracion FOREIGN KEY (id_estado_rango)
         REFERENCES m_estado_rango(id_estado_rango)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_estado_proceso)
+    CONSTRAINT fk_m_estado_proceso_t_rango_numeracion FOREIGN KEY (id_estado_proceso)
         REFERENCES m_estado_proceso(id_estado_proceso)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_t_usuarios_t_rango_numeracion FOREIGN KEY (id_usuario_creacion)
+        REFERENCES t_usuarios(id_usuario)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
 
 
-
-    id_numero BIGINT PRIMARY KEY AUTO_INCREMENT,
 CREATE TABLE IF NOT EXISTS t_numero_telefonico (
+    id_numero_telefonico BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_rango BIGINT NOT NULL,
-    num_telefono BIGINT NOT NULL UNIQUE,
-    facil_recordacion CHAR(1) DEFAULT 'N',
+    desc_numero_telefono VARCHAR(20) NOT NULL,
+    facil_recordacion TINYINT(1) DEFAULT 0,
     cod_pedido VARCHAR(100),
     id_suscriptor VARCHAR(100),
     id_cliente_freeswitch VARCHAR(100),
-    id_tipo_doc INT,
-    num_documento VARCHAR(30),
-    id_operador_cedente INT,
-    id_operador_receptor INT,
+    id_tipo_doc SMALLINT,
+    desc_numero_documento VARCHAR(30),
+    id_operador_cedente SMALLINT,
+    id_operador_receptor SMALLINT,
     fec_activacion DATETIME,
     fec_port_in DATETIME,
     fec_port_out DATETIME,
-    dias_reserva INT,
+    num_dias_reserva INT,
     fec_baja DATETIME,
     id_motivo_cambio INT,
     id_estado_numero INT NOT NULL,
-    desc_usuario_crea VARCHAR(100),
-    desc_host_crea VARCHAR(100),
-    desc_usuario_modf VARCHAR(100),
-    desc_host_modf VARCHAR(100),
+    id_usuario_creacion INT NOT NULL,
+    -- fec_creacion_numero DATETIME NOT NULL,
+    id_usuario_modificacion INT NOT NULL,
     fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_rango)
+    UNIQUE KEY ix_t_numero_telefonico_desc_numero_telefono (desc_numero_telefono),
+    CONSTRAINT fk_t_rango_numeracion_t_numero_telefonico FOREIGN KEY (id_rango)
         REFERENCES t_rango_numeracion(id_rango)
          ON DELETE RESTRICT
          ON UPDATE CASCADE,
-    FOREIGN KEY (id_estado_numero)
+    CONSTRAINT fk_m_estado_numero_t_numero_telefonico FOREIGN KEY (id_estado_numero)
         REFERENCES m_estado_numero(id_estado_numero)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_tipo_doc)
+    CONSTRAINT fk_m_tipo_doc_t_numero_telefonico FOREIGN KEY (id_tipo_doc)
         REFERENCES m_tipo_doc(id_tipo_doc)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_operador_cedente)
+    CONSTRAINT fk_m_operador_t_numero_telefonico FOREIGN KEY (id_operador_cedente)
         REFERENCES m_operador(id_operador)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_operador_receptor)
+    CONSTRAINT fk_m_operador_t_numero_telefonico_receptor FOREIGN KEY (id_operador_receptor)
         REFERENCES m_operador(id_operador)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
-    FOREIGN KEY (id_motivo_cambio)
+    CONSTRAINT fk_m_motivo_cambio_t_numero_telefonico FOREIGN KEY (id_motivo_cambio)
         REFERENCES m_motivo_cambio(id_motivo_cambio)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
@@ -142,25 +144,27 @@ CREATE TABLE IF NOT EXISTS t_numero_telefonico (
 
 CREATE TABLE IF NOT EXISTS t_historial_numero (
     id_historial BIGINT PRIMARY KEY AUTO_INCREMENT,
-    id_numero BIGINT NOT NULL,
+    id_numero_telefonico BIGINT NOT NULL,
     estado_anterior INT,
     estado_nuevo INT,
     motivo VARCHAR(255),
     usuario VARCHAR(100),
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_historial_numero FOREIGN KEY (id_numero) REFERENCES t_numero_telefonico(id_numero)
+    CONSTRAINT fk_t_numero_telefonico_t_historial_numero FOREIGN KEY (id_numero_telefonico) REFERENCES t_numero_telefonico(id_numero_telefonico)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS t_numero_adjunto (
     id_adjunto BIGINT PRIMARY KEY AUTO_INCREMENT,
-    id_numero BIGINT NOT NULL,
-    nombre_archivo VARCHAR(255),
-    ruta_archivo VARCHAR(500),
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    usuario_creacion VARCHAR(100),
-    CONSTRAINT fk_adjunto_numero FOREIGN KEY (id_numero) REFERENCES t_numero_telefonico(id_numero)
+    id_numero_telefonico BIGINT NOT NULL,
+    desc_nombre_archivo VARCHAR(255),
+    desc_ruta_archivo VARCHAR(500),
+    fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    id_usuario_creacion INT NOT NULL,
+    CONSTRAINT fk_t_numero_telefonico_t_numero_adjunto FOREIGN KEY (id_numero_telefonico) REFERENCES t_numero_telefonico(id_numero_telefonico)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 )ENGINE=InnoDB;
