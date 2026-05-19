@@ -21,6 +21,7 @@ CREATE TABLE `m_eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `cod_evento` VARCHAR(50) NOT NULL,
   `desc_evento` VARCHAR(255) NOT NULL,
+  `detalle_template` VARCHAR(500) NOT NULL,
   `tipo_evento` ENUM('FORMULARIO', 'API', 'JOB', 'OTRO') NOT NULL DEFAULT 'OTRO',
   `desc_usuario_crea` VARCHAR(50) NOT NULL,
   `desc_usuario_modf` VARCHAR(50) NOT NULL,
@@ -35,6 +36,20 @@ CREATE TABLE `m_eventos` (
     REFERENCES `m_estados` (`id_estado`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE t_auditoria (
+    id_auditoria BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_evento INT NOT NULL,
+    modulo VARCHAR(100) NOT NULL,
+    accion VARCHAR(50) NOT NULL,
+    detalle TEXT NOT NULL,
+    usuario_accion VARCHAR(100),
+    fecha_evento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_evento)
+        REFERENCES m_eventos(id_evento)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+
+) ENGINE=InnoDB;
 
 CREATE TABLE m_departamento (
   `id_departamento` int NOT NULL AUTO_INCREMENT,
