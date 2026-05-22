@@ -285,4 +285,26 @@ CREATE TABLE IF NOT EXISTS `t_trazabilidad_eventos` (
 ) ENGINE=InnoDB;
 
 
+-- win_sgn_db.app_security_settings definition
+CREATE TABLE `app_security_settings` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+-- win_sgn_db.app_user_sessions definition
+CREATE TABLE `app_user_sessions` (
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_usuario` bigint unsigned NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `last_activity_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `invalidated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `app_user_sessions_id_usuario_index` (`id_usuario`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
