@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS m_roles_menus (
   desc_usuario_crea VARCHAR(255) NOT NULL,
   desc_usuario_modf VARCHAR(255) NOT NULL,
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  fec_modf INT NOT NULL,
+  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   id_estado TINYINT NOT NULL,
   PRIMARY KEY (id_rol_menu),
   UNIQUE KEY uq_m_roles_menus_id_rol_menu (id_rol_menu),
