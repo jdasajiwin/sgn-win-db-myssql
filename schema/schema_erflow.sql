@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS t_trazabilidad_eventos;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE `m_tipo_servicio` (
+CREATE TABLE IF NOT EXISTS `m_tipo_servicio` (
   `id_tipo_servicio` int NOT NULL AUTO_INCREMENT,
   `nombre_tipo_servicio` varchar(255) NOT NULL,
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -26,7 +26,7 @@ CREATE TABLE `m_tipo_servicio` (
 ) ENGINE=InnoDB ;
 
 
-CREATE TABLE `m_tipo_zona` (
+CREATE TABLE IF NOT EXISTS `m_tipo_zona` (
   `id_tipo_zona` int NOT NULL AUTO_INCREMENT,
   `nombre_tipo_zona` varchar(255) NOT NULL,
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -34,7 +34,7 @@ CREATE TABLE `m_tipo_zona` (
   PRIMARY KEY (`id_tipo_zona`)
 ) ENGINE=InnoDB ;
 
-CREATE TABLE `m_proveedor_numeracion` (
+CREATE TABLE IF NOT EXISTS `m_proveedor_numeracion` (
   `id_proveedor_numeracion` int NOT NULL AUTO_INCREMENT,
   `nombre_proveedor` varchar(255) NOT NULL,
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE `m_proveedor_numeracion` (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE `m_comercializador` (
+CREATE TABLE IF NOT EXISTS `m_comercializador` (
   `id_comercializador` int NOT NULL AUTO_INCREMENT,
   `nombre_comercializador` varchar(255) NOT NULL,
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,7 +51,7 @@ CREATE TABLE `m_comercializador` (
   PRIMARY KEY (`id_comercializador`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `m_estado_rango` (
+CREATE TABLE IF NOT EXISTS `m_estado_rango` (
   `id_estado_rango` int NOT NULL AUTO_INCREMENT,
   `nombre_estado_rango` varchar(255) NOT NULL,
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -59,7 +59,31 @@ CREATE TABLE `m_estado_rango` (
   PRIMARY KEY (`id_estado_rango`)
 ) ENGINE=InnoDB ;
 
-CREATE TABLE `m_eventos` (
+CREATE TABLE IF NOT EXISTS m_tipo_estado (
+  id_tipo_estado INT NOT NULL AUTO_INCREMENT,
+  cod_tipo_estado VARCHAR(12) NOT NULL,
+  desc_tipo_estado VARCHAR(255) NOT NULL,
+  flc_activo BIGINT NOT NULL,
+  PRIMARY KEY (id_tipo_estado)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_estados (
+  id_estado TINYINT NOT NULL,
+  id_tipo_estado INT NOT NULL,
+  cod_estado VARCHAR(12) NOT NULL,
+  desc_estado VARCHAR(50) NOT NULL,
+  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  flg_activo BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_estado),
+  UNIQUE KEY uq_m_estados_cod_estado (cod_estado),
+  CONSTRAINT fk_m_tipo_estado_m_estados
+    FOREIGN KEY (id_tipo_estado) REFERENCES m_tipo_estado (id_tipo_estado)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `cod_evento` VARCHAR(50) NOT NULL,
   `desc_evento` VARCHAR(255) NOT NULL,
@@ -102,30 +126,6 @@ CREATE TABLE IF NOT EXISTS m_departamento (
   `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_departamento`)
-) ENGINE=InnoDB
-
-CREATE TABLE IF NOT EXISTS m_tipo_estado (
-  id_tipo_estado INT NOT NULL AUTO_INCREMENT,
-  cod_tipo_estado VARCHAR(12) NOT NULL,
-  desc_tipo_estado VARCHAR(255) NOT NULL,
-  flc_activo BIGINT NOT NULL,
-  PRIMARY KEY (id_tipo_estado)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS m_estados (
-  id_estado TINYINT NOT NULL,
-  id_tipo_estado INT NOT NULL,
-  cod_estado VARCHAR(12) NOT NULL,
-  desc_estado VARCHAR(50) NOT NULL,
-  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  flg_activo BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (id_estado),
-  UNIQUE KEY uq_m_estados_cod_estado (cod_estado),
-  CONSTRAINT fk_m_tipo_estado_m_estados
-    FOREIGN KEY (id_tipo_estado) REFERENCES m_tipo_estado (id_tipo_estado)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_menus (
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `t_trazabilidad_eventos` (
 
 
 -- win_sgn_db.app_security_settings definition
-CREATE TABLE `app_security_settings` (
+CREATE TABLE IF NOT EXISTS `app_security_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -297,7 +297,7 @@ CREATE TABLE `app_security_settings` (
 
 
 -- win_sgn_db.app_user_sessions definition
-CREATE TABLE `app_user_sessions` (
+CREATE TABLE IF NOT EXISTS `app_user_sessions` (
   `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_usuario` bigint unsigned NOT NULL,
   `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
