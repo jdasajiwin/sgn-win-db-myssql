@@ -205,10 +205,12 @@ CREATE TABLE IF NOT EXISTS m_roles_menus (
 
 CREATE TABLE IF NOT EXISTS t_usuarios (
   id_usuario INT NOT NULL AUTO_INCREMENT,
-  desc_apellidos VARCHAR(255) NOT NULL,
-  desc_email VARCHAR(150) NULL,
   desc_nombres VARCHAR(255) NOT NULL,
+  desc_apellidos VARCHAR(255) NOT NULL,
   desc_usuario VARCHAR(150) NOT NULL,
+  desc_email VARCHAR(150) NULL,
+  desc_password VARCHAR(150) NULL,
+  desc_tipo_login VARCHAR(50) NULL DEFAULT 'AD',
   desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   desc_usuario_modf VARCHAR(50) NULL,
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -216,6 +218,8 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
   id_estado TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_usuario),
   UNIQUE KEY uq_t_usuarios_id_usuario (id_usuario),
+  UNIQUE KEY uq_t_usuarios_desc_usuario (desc_usuario),
+  UNIQUE KEY uq_t_usuarios_desc_email (desc_email),
   CONSTRAINT fk_m_estados_t_usuarios
     FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
 ) ENGINE=InnoDB;

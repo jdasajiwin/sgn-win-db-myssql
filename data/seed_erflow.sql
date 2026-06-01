@@ -330,11 +330,11 @@ VALUES
 
 INSERT INTO t_usuarios (
   id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado,
-  desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
+  desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
   1, 'usuario principal', 'jhoel', 'salinas', 'jsdaniel_21@hotmail.com', 1,
-  CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 )
 ON DUPLICATE KEY UPDATE
   desc_usuario = VALUES(desc_usuario),
@@ -342,16 +342,18 @@ ON DUPLICATE KEY UPDATE
   desc_apellidos = VALUES(desc_apellidos),
   desc_email = VALUES(desc_email),
   id_estado = VALUES(id_estado),
+  desc_password = VALUES(desc_password),
+  desc_tipo_login = VALUES(desc_tipo_login),
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
 INSERT INTO t_usuarios (
   id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado,
-  desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
+  desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
   2, 'fuyu.collantes', 'Fuyu', 'Collantes', 'fuyu.collantes@outlook.com', 1,
-  CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 )
 ON DUPLICATE KEY UPDATE
   desc_usuario = VALUES(desc_usuario),
@@ -359,6 +361,27 @@ ON DUPLICATE KEY UPDATE
   desc_apellidos = VALUES(desc_apellidos),
   desc_email = VALUES(desc_email),
   id_estado = VALUES(id_estado),
+  desc_password = VALUES(desc_password),
+  desc_tipo_login = VALUES(desc_tipo_login),
+  desc_usuario_modf = CURRENT_USER(),
+  fec_modf = CURRENT_TIMESTAMP;
+
+INSERT INTO t_usuarios (
+  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado,
+  desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
+)
+VALUES (
+  3, 'rromero.soaint', 'Raul', 'Romero', 'rromero.soaint@win.pe', 1,
+  '$2y$12$iot8qOFYK/mXKTn6FY23YOrTsn6E/J7oIKQPqESudu1jOG0DRBwpC', 'LOCAL', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+)
+ON DUPLICATE KEY UPDATE
+  desc_usuario = VALUES(desc_usuario),
+  desc_nombres = VALUES(desc_nombres),
+  desc_apellidos = VALUES(desc_apellidos),
+  desc_email = VALUES(desc_email),
+  id_estado = VALUES(id_estado),
+  desc_password = VALUES(desc_password),
+  desc_tipo_login = VALUES(desc_tipo_login),
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 

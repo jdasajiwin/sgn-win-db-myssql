@@ -10,6 +10,8 @@ CREATE PROCEDURE spl_t_usuarios_crear(
     IN p_desc_nombres VARCHAR(255),
     IN p_desc_apellidos VARCHAR(255),
     IN p_desc_email VARCHAR(150),
+    IN p_password VARCHAR(150),
+    IN p_desc_tipo_login VARCHAR(150),
     IN p_id_estado TINYINT
 )
 BEGIN
@@ -19,6 +21,8 @@ BEGIN
 			,desc_nombres
 			,desc_apellidos
 			,desc_email
+			,desc_password
+			,desc_tipo_login
 			,id_estado
 		)
 	 VALUES (
@@ -26,6 +30,8 @@ BEGIN
 			,p_desc_nombres
 			,p_desc_apellidos
 			,p_desc_email
+			,p_password
+			,p_desc_tipo_login
 			,p_id_estado
 		);
 
