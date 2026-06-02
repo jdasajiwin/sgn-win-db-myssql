@@ -4,7 +4,7 @@ CREATE PROCEDURE spl_departamento()
 BEGIN
     SELECT
         id_departamento,
-        nombre_departamento,
+        desc_departamento,
         cod_ubigeo_departamento,
         cod_tel_departamento,
         cobertura_departamento

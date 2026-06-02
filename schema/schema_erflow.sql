@@ -19,43 +19,53 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE IF NOT EXISTS `m_tipo_servicio` (
   `id_tipo_servicio` int NOT NULL AUTO_INCREMENT,
-  `nombre_tipo_servicio` varchar(255) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_tipo_servicio` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_tipo_servicio`)
 ) ENGINE=InnoDB ;
 
 
 CREATE TABLE IF NOT EXISTS `m_tipo_zona` (
   `id_tipo_zona` int NOT NULL AUTO_INCREMENT,
-  `nombre_tipo_zona` varchar(255) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_tipo_zona` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_tipo_zona`)
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS `m_proveedor_numeracion` (
   `id_proveedor_numeracion` int NOT NULL AUTO_INCREMENT,
-  `nombre_proveedor` varchar(255) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_proveedor_numeracion` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_proveedor_numeracion`)
 ) ENGINE=InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `m_comercializador` (
   `id_comercializador` int NOT NULL AUTO_INCREMENT,
-  `nombre_comercializador` varchar(255) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_comercializador` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_comercializador`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_estado_rango` (
   `id_estado_rango` int NOT NULL AUTO_INCREMENT,
-  `nombre_estado_rango` varchar(255) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fech_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_estado_rango` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_estado_rango`)
 ) ENGINE=InnoDB ;
 
@@ -119,12 +129,14 @@ CREATE TABLE IF NOT EXISTS t_auditoria (
 
 CREATE TABLE IF NOT EXISTS m_departamento (
   `id_departamento` int NOT NULL AUTO_INCREMENT,
-  `nombre_departamento` varchar(150) NOT NULL,
+  `desc_departamento` varchar(150) NOT NULL,
   `cod_ubigeo_departamento` char(10) NOT NULL,
   `cod_tel_departamento` char(10) NOT NULL,
   `cobertura_departamento` char(10) NOT NULL,
-  `fec_crea` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fec_upd` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_departamento`)
 ) ENGINE=InnoDB;
 

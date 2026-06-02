@@ -4,7 +4,7 @@ CREATE PROCEDURE spl_comercializador()
 BEGIN
     SELECT
         id_comercializador,
-        nombre_comercializador
+        desc_comercializador
     FROM m_comercializador;
 END$$
 DELIMITER ;

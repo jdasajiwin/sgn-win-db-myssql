@@ -4,7 +4,7 @@ CREATE PROCEDURE spl_proveedor_numeracion()
 BEGIN
     SELECT
         id_proveedor_numeracion,
-        nombre_proveedor
+        desc_proveedor_numeracion
     FROM m_proveedor_numeracion;
 END$$
 DELIMITER ;

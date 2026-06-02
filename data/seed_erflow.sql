@@ -13,37 +13,37 @@
 
 START TRANSACTION;
 
-INSERT INTO m_tipo_servicio (nombre_tipo_servicio,fec_crea,fech_upd) VALUES
-	 ('Fijo','2026-05-08 16:56:50','2026-05-08 16:56:50'),
-	 ('Movil','2026-05-08 16:56:50','2026-05-08 16:56:50');
+INSERT INTO m_tipo_servicio (desc_tipo_servicio,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('Fijo',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+	 ('Movil',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
 
 
-INSERT INTO m_tipo_zona (nombre_tipo_zona,fec_crea,fech_upd) VALUES
-	 ('Rural','2026-05-08 16:57:21','2026-05-08 16:57:21'),
-	 ('Urbano','2026-05-08 16:57:21','2026-05-08 16:57:21');
+INSERT INTO m_tipo_zona (desc_tipo_zona,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('Rural',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:21','2026-05-08 16:57:21'),
+	 ('Urbano',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:21','2026-05-08 16:57:21');
 
 
 
 
 
 
-INSERT INTO m_proveedor_numeracion (nombre_proveedor,fec_crea,fech_upd) VALUES
-	 ('WI NET TELECOM','2026-05-08 16:57:32','2026-05-08 16:57:32'),
-	 ('ON','2026-05-08 16:57:32','2026-05-08 16:57:32'),
-	 ('GTD','2026-05-08 16:57:32','2026-05-08 16:57:32');
+INSERT INTO m_proveedor_numeracion (desc_proveedor_numeracion,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('WI NET TELECOM',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32'),
+	 ('ON',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32'),
+	 ('GTD',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32');
 
 
 
-INSERT INTO m_comercializador (nombre_comercializador,fec_crea,fech_upd) VALUES
-	 ('WIN','2026-05-08 16:57:41','2026-05-08 16:57:41');
+INSERT INTO m_comercializador (desc_comercializador,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('WIN',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:41','2026-05-08 16:57:41');
 
 
 
-INSERT INTO m_estado_rango (nombre_estado_rango,fec_crea,fech_upd) VALUES
-	 ('Habilitado','2026-05-08 16:58:55','2026-05-08 16:58:55'),
-	 ('No habilitado','2026-05-08 16:58:55','2026-05-08 16:58:55');
+INSERT INTO m_estado_rango (desc_estado_rango,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('Habilitado',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:58:55','2026-05-08 16:58:55'),
+	 ('No habilitado',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:58:55','2026-05-08 16:58:55');
 
 -- m_eventos
 INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
@@ -115,34 +115,34 @@ INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_
 
 -- DEPARTAMENTOS
 
-INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
-	 ('Amazonas','01','41','NO',NOW(),NOW()),
-	 ('Áncash','02','43','SI',NOW(),NOW()),
-	 ('Apurímac','03','83','NO',NOW(),NOW()),
-	 ('Arequipa','04','54','SI',NOW(),NOW()),
-	 ('Ayacucho','05','66','NO',NOW(),NOW()),
-	 ('Cajamarca','06','76','NO',NOW(),NOW()),
-	 ('Cusco','07','84','SI',NOW(),NOW()),
-	 ('Huancavelica','08','67','NO',NOW(),NOW()),
-	 ('Huánuco','09','62','NO',NOW(),NOW()),
-	 ('Ica','10','56','NO',NOW(),NOW());
-INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
-	 ('Junín','11','64','SI',NOW(),NOW()),
-	 ('La Libertad','12','44','SI',NOW(),NOW()),
-	 ('Lambayeque','13','74','SI',NOW(),NOW()),
-	 ('Lima','14','1','SI',NOW(),NOW()),
-	 ('Loreto','15','65','NO',NOW(),NOW()),
-	 ('Madre de Dios','16','82','NO',NOW(),NOW()),
-	 ('Moquegua','17','53','NO',NOW(),NOW()),
-	 ('Pasco','18','63','NO',NOW(),NOW()),
-	 ('Piura','19','73','SI',NOW(),NOW()),
-	 ('Puno','20','51','NO',NOW(),NOW());
-INSERT INTO m_departamento (nombre_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,fec_crea,fec_upd) VALUES
-	 ('San Martín','21','42','NO',NOW(),NOW()),
-	 ('Tacna','22','42','NO',NOW(),NOW()),
-	 ('Tumbes','23','72','NO',NOW(),NOW()),
-	 ('Ucayali','24','61','NO',NOW(),NOW()),
-	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',NOW(),NOW());
+INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('Amazonas','01','41','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Áncash','02','43','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Apurímac','03','83','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Arequipa','04','54','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Ayacucho','05','66','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Cajamarca','06','76','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Cusco','07','84','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Huancavelica','08','67','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Huánuco','09','62','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Ica','10','56','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
+INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('Junín','11','64','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('La Libertad','12','44','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Lambayeque','13','74','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Lima','14','1','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Loreto','15','65','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Madre de Dios','16','82','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Moquegua','17','53','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Pasco','18','63','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Piura','19','73','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Puno','20','51','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
+INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
+	 ('San Martín','21','42','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Tacna','22','42','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Tumbes','23','72','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Ucayali','24','61','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
+	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
 
 -- 0) Tipo de estado (padre de m_estados)
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
@@ -231,7 +231,9 @@ VALUES
   (13, LEFT(REGEXP_REPLACE(UPPER('Comercializador'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Comercializador', '/mantenimientos/comercializador', 1),
   (14, LEFT(REGEXP_REPLACE(UPPER('Operadores'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Operadores', '/mantenimientos/operadores', 1),
   (15, LEFT(REGEXP_REPLACE(UPPER('Motivo del cambio de estado'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Motivo del cambio de estado', '/mantenimientos/motivo-cambio-estado', 1),
-  (16, LEFT(REGEXP_REPLACE(UPPER('Freeswitch parametros generales'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Parametros generales Freeswitch', '/mantenimientos/parametros-freeswitch', 1)
+  (16, LEFT(REGEXP_REPLACE(UPPER('Freeswitch parametros generales'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Parametros generales Freeswitch', '/mantenimientos/parametros-freeswitch', 1),
+  (17, LEFT(REGEXP_REPLACE(UPPER('Departamento'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Departamento', '/mantenimientos/departamento', 1),
+  (18, LEFT(REGEXP_REPLACE(UPPER('Estados del numero telefonico'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Estados del numero telefonico', '/mantenimientos/estados-numero', 1)
 ON DUPLICATE KEY UPDATE
   cod_menu = VALUES(cod_menu),
   cod_sub_menu = VALUES(cod_sub_menu),
