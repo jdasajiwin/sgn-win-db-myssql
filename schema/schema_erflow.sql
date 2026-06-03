@@ -91,6 +91,16 @@ CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
+    `id_motivo_rechazo` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_motivo_rechazo` VARCHAR(50),
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
     `id_motivo_cambio` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_motivo_cambio` VARCHAR(50),
