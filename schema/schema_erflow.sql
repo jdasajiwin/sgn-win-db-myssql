@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS t_usuarios;
 DROP TABLE IF EXISTS t_rango_numeracion;
 DROP TABLE IF EXISTS t_historial_numero;
 DROP TABLE IF EXISTS t_numero_telefonico;
+DROP TABLE IF EXISTS t_numero_adjunto;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
