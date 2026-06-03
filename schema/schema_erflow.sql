@@ -4,18 +4,122 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS t_usuario_rol;
-DROP TABLE IF EXISTS m_roles_opciones;
+DROP TABLE IF EXISTS m_estado_usuario;
+DROP TABLE IF EXISTS m_operador;
+DROP TABLE IF EXISTS m_estado_numero;
+DROP TABLE IF EXISTS m_acceso_usuario;
+DROP TABLE IF EXISTS m_tipo_documento;
+DROP TABLE IF EXISTS m_estado_portabilidad;
+DROP TABLE IF EXISTS m_motivo_rechazo;
+DROP TABLE IF EXISTS m_plan_telefonia;
+DROP TABLE IF EXISTS m_motivo_cambio;
 DROP TABLE IF EXISTS m_roles_menus;
-DROP TABLE IF EXISTS t_usuarios;
+DROP TABLE IF EXISTS m_roles_opciones;
 DROP TABLE IF EXISTS m_opciones;
 DROP TABLE IF EXISTS m_menus;
 DROP TABLE IF EXISTS m_roles;
+DROP TABLE IF EXISTS t_auditoria;
+DROP TABLE IF EXISTS m_eventos;
 DROP TABLE IF EXISTS m_estados;
 DROP TABLE IF EXISTS m_tipo_estado;
 DROP TABLE IF EXISTS t_trazabilidad_eventos;
+DROP TABLE IF EXISTS m_proveedor_numeracion;
+DROP TABLE IF EXISTS m_comercializador;
+DROP TABLE IF EXISTS m_estado_rango;
+DROP TABLE IF EXISTS m_departamento;
+DROP TABLE IF EXISTS m_tipo_servicio;
+DROP TABLE IF EXISTS m_tipo_zona;
+DROP TABLE IF EXISTS t_usuario_rol;
+DROP TABLE IF EXISTS t_usuarios;
+DROP TABLE IF EXISTS t_rango_numeracion;
+DROP TABLE IF EXISTS t_historial_numero;
+DROP TABLE IF EXISTS t_numero_telefonico;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE IF NOT EXISTS `m_estado_proceso` (
+    `id_estado_proceso` INT PRIMARY KEY AUTO_INCREMENT,
+    `desc_estado` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_operador` (
+    `id_operador` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_operador` VARCHAR(150) NOT NULL,
+    `cod_enrutador` VARCHAR(20),
+    `flg_estado` CHAR(1) DEFAULT 'A',
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
+    `id_motivo_rechazo` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_motivo_rechazo` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_estado_portabilidad` (
+    `id_estado_portabilidad` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_estado_portabilidad` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
+    `id_plan_telefonia` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_plan_telefonia` VARCHAR(150),
+    `desc_tarifa_asignada` VARCHAR(50),
+    `cant_saldo_inicial` TINYINT(4) UNSIGNED,
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
+    `id_motivo_cambio` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_motivo_cambio` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_estado_numero` (
+    `id_estado_numero` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_estado_numero` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_estado_usuario` (
+    `id_estado_usuario` TINYINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_estado` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_acceso_usuario` (
+    `id_acceso_usuario` TINYINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_acceso` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `m_tipo_documento` (
+    `id_tipo_doc` SMALLINT PRIMARY KEY AUTO_INCREMENT,
+    `desc_tipo_doc` VARCHAR(50),
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_tipo_servicio` (
   `id_tipo_servicio` int NOT NULL AUTO_INCREMENT,
@@ -69,28 +173,28 @@ CREATE TABLE IF NOT EXISTS `m_estado_rango` (
   PRIMARY KEY (`id_estado_rango`)
 ) ENGINE=InnoDB ;
 
-CREATE TABLE IF NOT EXISTS m_tipo_estado (
-  id_tipo_estado INT NOT NULL AUTO_INCREMENT,
-  cod_tipo_estado VARCHAR(12) NOT NULL,
-  desc_tipo_estado VARCHAR(255) NOT NULL,
-  flc_activo BIGINT NOT NULL,
-  PRIMARY KEY (id_tipo_estado)
+CREATE TABLE IF NOT EXISTS `m_tipo_estado` (
+  `id_tipo_estado` int NOT NULL AUTO_INCREMENT,
+  `cod_tipo_estado` varchar(12) NOT NULL,
+  `desc_tipo_estado` varchar(255) NOT NULL,
+  `flc_activo` bigint NOT NULL,
+  PRIMARY KEY (`id_tipo_estado`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS m_estados (
-  id_estado TINYINT NOT NULL,
-  id_tipo_estado INT NOT NULL,
-  cod_estado VARCHAR(12) NOT NULL,
-  desc_estado VARCHAR(50) NOT NULL,
-  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  flg_activo BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (id_estado),
-  UNIQUE KEY uq_m_estados_cod_estado (cod_estado),
-  CONSTRAINT fk_m_tipo_estado_m_estados
-    FOREIGN KEY (id_tipo_estado) REFERENCES m_tipo_estado (id_tipo_estado)
+CREATE TABLE IF NOT EXISTS `m_estados` (
+  `id_estado` TINYINT NOT NULL,
+  `id_tipo_estado` INT NOT NULL,
+  `cod_estado` VARCHAR(12) NOT NULL,
+  `desc_estado` VARCHAR(50) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_estado`),
+  UNIQUE KEY `uq_m_estados_cod_estado` (`cod_estado`),
+  CONSTRAINT `fk_m_tipo_estado_m_estados`
+    FOREIGN KEY (`id_tipo_estado`) REFERENCES `m_tipo_estado` (`id_tipo_estado`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_eventos` (
@@ -220,7 +324,7 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
   desc_nombres VARCHAR(255) NOT NULL,
   desc_apellidos VARCHAR(255) NOT NULL,
   desc_usuario VARCHAR(150) NOT NULL,
-  desc_email VARCHAR(150) NULL,
+  desc_email VARCHAR(150) NOT NULL,
   desc_password VARCHAR(150) NULL,
   desc_tipo_login VARCHAR(50) NULL DEFAULT 'AD',
   desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
@@ -228,12 +332,14 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fec_modf DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   id_estado TINYINT NOT NULL DEFAULT 1,
+  id_acceso TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_usuario),
-  UNIQUE KEY uq_t_usuarios_id_usuario (id_usuario),
   UNIQUE KEY uq_t_usuarios_desc_usuario (desc_usuario),
   UNIQUE KEY uq_t_usuarios_desc_email (desc_email),
-  CONSTRAINT fk_m_estados_t_usuarios
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
+  CONSTRAINT fk_m_estado_usuario_t_usuarios
+    FOREIGN KEY (id_estado) REFERENCES m_estado_usuario (id_estado_usuario),
+  CONSTRAINT fk_m_acceso_usuario_t_usuarios
+    FOREIGN KEY (id_acceso) REFERENCES m_acceso_usuario (id_acceso_usuario)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_roles_opciones (
@@ -255,15 +361,15 @@ CREATE TABLE IF NOT EXISTS m_roles_opciones (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS t_usuario_rol (
-  id_usuario_rol INT NOT NULL AUTO_INCREMENT,
-  id_rol INT NOT NULL,
-  id_usuario INT NOT NULL,
-  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
-  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  id_estado TINYINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (id_usuario_rol),
+  `id_usuario_rol` INT NOT NULL AUTO_INCREMENT,
+  `id_rol` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_estado` TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_usuario_rol`),
   UNIQUE KEY uq_t_usuario_rol_id_usuario_rol (id_usuario_rol),
   KEY ix_t_usuario_rol_id_rol (id_rol),
   KEY ix_t_usuario_rol_id_usuario (id_usuario),
@@ -301,6 +407,143 @@ CREATE TABLE IF NOT EXISTS `t_trazabilidad_eventos` (
 ) ENGINE=InnoDB;
 
 
+CREATE TABLE IF NOT EXISTS t_rango_numeracion (
+    `id_rango` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `id_tipo_servicio` INT NOT NULL, 
+    `id_departamento` INT NOT NULL,
+    `id_tipo_zona` INT NOT NULL,
+    `id_proveedor_numeracion` INT NOT NULL,
+    `id_comercializador` INT NOT NULL,
+    `cant_numeros_generados` INT NOT NULL,
+    `num_rango_inicial` BIGINT NOT NULL,
+    `num_rango_final` BIGINT NOT NULL,
+    `fec_creacion_rango` DATETIME NOT NULL,
+    `id_estado_rango` INT NOT NULL,
+    `id_estado_proceso` INT DEFAULT 1,
+    `cant_total_generados` INT DEFAULT 0,
+    `cant_total_error` INT DEFAULT 0,
+    `fec_inicio_proceso` DATETIME NULL,
+    `fec_fin_proceso` DATETIME NULL,
+    `id_usuario_creacion` INT NOT NULL,
+    `id_usuario_modificacion` INT NOT NULL,
+    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `nom_app` VARCHAR(100),
+    `nom_app_modf` VARCHAR(100),
+    CONSTRAINT fk_m_tipo_servicio_t_rango_numeracion FOREIGN KEY (id_tipo_servicio)
+        REFERENCES m_tipo_servicio(id_tipo_servicio)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_departamento_t_rango_numeracion FOREIGN KEY (id_departamento)
+        REFERENCES m_departamento(id_departamento)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_tipo_zona_t_rango_numeracion FOREIGN KEY (id_tipo_zona)
+        REFERENCES m_tipo_zona(id_tipo_zona)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_proveedor_numeracion_t_rango_numeracion FOREIGN KEY (id_proveedor_numeracion)
+        REFERENCES m_proveedor_numeracion(id_proveedor_numeracion)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_comercializador_t_rango_numeracion FOREIGN KEY (id_comercializador)
+        REFERENCES m_comercializador(id_comercializador)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_estado_rango_t_rango_numeracion FOREIGN KEY (id_estado_rango)
+        REFERENCES m_estado_rango(id_estado_rango)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_estado_proceso_t_rango_numeracion FOREIGN KEY (id_estado_proceso)
+        REFERENCES m_estado_proceso(id_estado_proceso)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_t_usuarios_t_rango_numeracion FOREIGN KEY (id_usuario_creacion)
+        REFERENCES t_usuarios(id_usuario)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS t_numero_telefonico (
+    id_numero_telefonico BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_rango BIGINT NOT NULL,
+    desc_numero_telefono VARCHAR(20) NOT NULL,
+    facil_recordacion TINYINT(1) DEFAULT 0,
+    cod_pedido VARCHAR(100),
+    id_suscriptor VARCHAR(100),
+    id_cliente_freeswitch VARCHAR(100),
+    id_tipo_doc SMALLINT,
+    desc_numero_documento VARCHAR(30),
+    id_operador_cedente SMALLINT NOT NULL,
+    id_operador_receptor SMALLINT NOT NULL,
+    fec_activacion DATETIME,
+    fec_port_in DATETIME,
+    fec_port_out DATETIME,
+    num_dias_reserva INT,
+    fec_baja DATETIME,
+    id_motivo_cambio SMALLINT,
+    id_estado_numero SMALLINT NOT NULL,
+    id_usuario_creacion INT NOT NULL,
+    id_usuario_modificacion INT NOT NULL,
+    fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY ix_t_numero_telefonico_desc_numero_telefono (desc_numero_telefono),
+    CONSTRAINT fk_t_rango_numeracion_t_numero_telefonico FOREIGN KEY (id_rango)
+        REFERENCES t_rango_numeracion(id_rango)
+         ON DELETE RESTRICT
+         ON UPDATE CASCADE,
+    CONSTRAINT fk_m_estado_numero_t_numero_telefonico FOREIGN KEY (id_estado_numero)
+        REFERENCES m_estado_numero(id_estado_numero)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_tipo_documento_t_numero_telefonico FOREIGN KEY (id_tipo_doc)
+        REFERENCES m_tipo_documento(id_tipo_doc)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_operador_t_numero_telefonico FOREIGN KEY (id_operador_cedente)
+        REFERENCES m_operador(id_operador)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_operador_t_numero_telefonico_receptor FOREIGN KEY (id_operador_receptor)
+        REFERENCES m_operador(id_operador)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_motivo_cambio_t_numero_telefonico FOREIGN KEY (id_motivo_cambio)
+        REFERENCES m_motivo_cambio(id_motivo_cambio)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS t_historial_numero (
+    id_historial BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_numero_telefonico BIGINT NOT NULL,
+    estado_anterior INT,
+    estado_nuevo INT,
+    motivo VARCHAR(255),
+    usuario VARCHAR(100),
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_t_numero_telefonico_t_historial_numero FOREIGN KEY (id_numero_telefonico) REFERENCES t_numero_telefonico(id_numero_telefonico)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS t_numero_adjunto (
+    id_adjunto BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_numero_telefonico BIGINT NOT NULL,
+    desc_nombre_archivo VARCHAR(255),
+    desc_ruta_archivo VARCHAR(500),
+    fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    id_usuario_creacion INT NOT NULL,
+    CONSTRAINT fk_t_numero_telefonico_t_numero_adjunto FOREIGN KEY (id_numero_telefonico) REFERENCES t_numero_telefonico(id_numero_telefonico)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 -- win_sgn_db.app_security_settings definition
 CREATE TABLE IF NOT EXISTS `app_security_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -324,3 +567,41 @@ CREATE TABLE IF NOT EXISTS `app_user_sessions` (
   PRIMARY KEY (`id`),
   KEY `app_user_sessions_id_usuario_index` (`id_usuario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+CREATE INDEX ix_t_numero_telefonico_id_estado_numero
+ON t_numero_telefonico(id_estado_numero);
+CREATE INDEX ix_t_numero_telefonico_id_rango
+ON t_numero_telefonico(id_rango);
+CREATE INDEX ix_t_numero_telefonico_id_tipo_doc
+ON t_numero_telefonico(id_tipo_doc);
+CREATE INDEX ix_t_numero_telefonico_id_operador_cedente
+ON t_numero_telefonico(id_operador_cedente);
+CREATE INDEX ix_t_numero_telefonico_id_operador_receptor
+ON t_numero_telefonico(id_operador_receptor);
+CREATE INDEX ix_t_numero_telefonico_id_motivo_cambio
+ON t_numero_telefonico(id_motivo_cambio);
+CREATE INDEX ix_t_rango_numeracion_num_rango_inicial_num_rango_final
+ON t_rango_numeracion(num_rango_inicial, num_rango_final);
+
+
+CREATE INDEX ix_t_historial_numero_id_numero_telefonico
+ON t_historial_numero(id_numero_telefonico);
+
+CREATE INDEX ix_t_numero_adjunto_id_numero_telefonico
+ON t_numero_adjunto(id_numero_telefonico);
+
+CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio
+ON t_rango_numeracion(id_tipo_servicio);
+CREATE INDEX ix_t_rango_numeracion_id_departamento
+ON t_rango_numeracion(id_departamento);
+CREATE INDEX ix_t_rango_numeracion_id_tipo_zona
+ON t_rango_numeracion(id_tipo_zona);
+CREATE INDEX ix_t_rango_numeracion_id_proveedor_numeracion
+ON t_rango_numeracion(id_proveedor_numeracion);
+CREATE INDEX ix_t_rango_numeracion_id_comercializador
+ON t_rango_numeracion(id_comercializador);
+CREATE INDEX ix_t_rango_numeracion_id_estado_rango
+ON t_rango_numeracion(id_estado_rango);
+CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio_departamento_tipo_zona ON t_rango_numeracion (id_tipo_servicio, id_departamento, id_tipo_zona);
