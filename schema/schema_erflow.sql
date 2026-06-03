@@ -40,7 +40,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS `m_estado_proceso` (
     `id_estado_proceso` INT PRIMARY KEY AUTO_INCREMENT,
     `desc_estado` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -50,7 +52,9 @@ CREATE TABLE IF NOT EXISTS `m_operador` (
     `desc_operador` VARCHAR(150) NOT NULL,
     `cod_enrutador` VARCHAR(20),
     `flg_estado` CHAR(1) DEFAULT 'A',
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -58,7 +62,9 @@ CREATE TABLE IF NOT EXISTS `m_operador` (
 CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
     `id_motivo_rechazo` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_motivo_rechazo` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -66,7 +72,9 @@ CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
 CREATE TABLE IF NOT EXISTS `m_estado_portabilidad` (
     `id_estado_portabilidad` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_estado_portabilidad` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -76,7 +84,9 @@ CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
     `desc_plan_telefonia` VARCHAR(150),
     `desc_tarifa_asignada` VARCHAR(50),
     `cant_saldo_inicial` TINYINT(4) UNSIGNED,
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -84,7 +94,9 @@ CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
 CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
     `id_motivo_cambio` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_motivo_cambio` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -92,7 +104,9 @@ CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
 CREATE TABLE IF NOT EXISTS `m_estado_numero` (
     `id_estado_numero` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_estado_numero` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -100,7 +114,9 @@ CREATE TABLE IF NOT EXISTS `m_estado_numero` (
 CREATE TABLE IF NOT EXISTS `m_estado_usuario` (
     `id_estado_usuario` TINYINT PRIMARY KEY AUTO_INCREMENT,
     `desc_estado` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -108,7 +124,9 @@ CREATE TABLE IF NOT EXISTS `m_estado_usuario` (
 CREATE TABLE IF NOT EXISTS `m_acceso_usuario` (
     `id_acceso_usuario` TINYINT PRIMARY KEY AUTO_INCREMENT,
     `desc_acceso` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -116,7 +134,9 @@ CREATE TABLE IF NOT EXISTS `m_acceso_usuario` (
 CREATE TABLE IF NOT EXISTS `m_tipo_documento` (
     `id_tipo_doc` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_tipo_doc` VARCHAR(50),
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -426,7 +446,9 @@ CREATE TABLE IF NOT EXISTS t_rango_numeracion (
     `fec_fin_proceso` DATETIME NULL,
     `id_usuario_creacion` INT NOT NULL,
     `id_usuario_modificacion` INT NOT NULL,
-    `fec_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
     `nom_app` VARCHAR(100),
@@ -487,6 +509,8 @@ CREATE TABLE IF NOT EXISTS t_numero_telefonico (
     id_estado_numero SMALLINT NOT NULL,
     id_usuario_creacion INT NOT NULL,
     id_usuario_modificacion INT NOT NULL,
+    desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
+    desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     fec_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     fec_modf DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
