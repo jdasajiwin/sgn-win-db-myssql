@@ -305,9 +305,7 @@ CREATE TABLE IF NOT EXISTS m_menus (
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_menu),
-  UNIQUE KEY uq_m_menus_cod_menu (cod_menu),
-  CONSTRAINT fk_m_estados_m_menus
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
+  UNIQUE KEY uq_m_menus_cod_menu (cod_menu)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_opciones (
@@ -324,8 +322,6 @@ CREATE TABLE IF NOT EXISTS m_opciones (
   PRIMARY KEY (id_opcion, id_menu),
   UNIQUE KEY uq_m_opciones_menu_opcion (id_menu, id_opcion),
   UNIQUE KEY uq_m_opciones_cod_menu (cod_menu),
-  CONSTRAINT fk_m_estados_m_opciones
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado),
   CONSTRAINT fk_m_menus_m_opciones
     FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu)
 ) ENGINE=InnoDB;
@@ -340,9 +336,7 @@ CREATE TABLE IF NOT EXISTS m_roles (
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_rol),
-  UNIQUE KEY uq_m_roles_cod_rol (cod_rol),
-  CONSTRAINT fk_m_estados_m_roles
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
+  UNIQUE KEY uq_m_roles_cod_rol (cod_rol)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_roles_menus (
@@ -358,13 +352,10 @@ CREATE TABLE IF NOT EXISTS m_roles_menus (
   UNIQUE KEY uq_m_roles_menus_id_rol_menu (id_rol_menu),
   KEY ix_m_roles_menus_id_rol (id_rol),
   KEY ix_m_roles_menus_id_menu (id_menu),
-  KEY ix_m_roles_menus_id_estado (id_estado),
   CONSTRAINT fk_m_roles_m_roles_menus
     FOREIGN KEY (id_rol) REFERENCES m_roles (id_rol),
   CONSTRAINT fk_m_menus_m_roles_menus
-    FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu),
-  CONSTRAINT fk_m_estados_m_roles_menus
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado)
+    FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS t_usuarios (
@@ -424,8 +415,6 @@ CREATE TABLE IF NOT EXISTS t_usuario_rol (
   KEY ix_t_usuario_rol_id_usuario (id_usuario),
   CONSTRAINT fk_m_roles_t_usuario_rol
     FOREIGN KEY (id_rol) REFERENCES m_roles (id_rol),
-  CONSTRAINT fk_m_estados_t_usuario_rol
-    FOREIGN KEY (id_estado) REFERENCES m_estados (id_estado),
   CONSTRAINT fk_t_usuarios_t_usuario_rol
     FOREIGN KEY (id_usuario) REFERENCES t_usuarios (id_usuario)
 ) ENGINE=InnoDB;
