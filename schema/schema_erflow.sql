@@ -4,10 +4,9 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS m_estado_usuario;
+
 DROP TABLE IF EXISTS m_operador;
 DROP TABLE IF EXISTS m_estado_numero;
-DROP TABLE IF EXISTS m_acceso_usuario;
 DROP TABLE IF EXISTS m_tipo_documento;
 DROP TABLE IF EXISTS m_estado_portabilidad;
 DROP TABLE IF EXISTS m_motivo_rechazo;
@@ -19,6 +18,7 @@ DROP TABLE IF EXISTS m_opciones;
 DROP TABLE IF EXISTS m_menus;
 DROP TABLE IF EXISTS m_roles;
 DROP TABLE IF EXISTS t_auditoria;
+DROP TABLE IF EXISTS m_tipo_evento;
 DROP TABLE IF EXISTS m_eventos;
 DROP TABLE IF EXISTS m_estados;
 DROP TABLE IF EXISTS m_tipo_estado;
@@ -31,6 +31,8 @@ DROP TABLE IF EXISTS m_tipo_servicio;
 DROP TABLE IF EXISTS m_tipo_zona;
 DROP TABLE IF EXISTS t_usuario_rol;
 DROP TABLE IF EXISTS t_usuarios;
+DROP TABLE IF EXISTS m_estado_usuario;
+DROP TABLE IF EXISTS m_acceso_usuario;
 DROP TABLE IF EXISTS t_rango_numeracion;
 DROP TABLE IF EXISTS t_historial_numero;
 DROP TABLE IF EXISTS t_numero_telefonico;
@@ -53,7 +55,6 @@ CREATE TABLE IF NOT EXISTS `m_operador` (
     `id_operador` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_operador` VARCHAR(150) NOT NULL,
     `cod_enrutador` VARCHAR(20),
-    `flg_estado` CHAR(1) DEFAULT 'A',
     `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -275,18 +276,21 @@ CREATE TABLE IF NOT EXISTS `m_eventos` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS t_auditoria (
-    id_auditoria BIGINT PRIMARY KEY AUTO_INCREMENT,
-    id_evento INT NOT NULL,
-    modulo VARCHAR(100) NOT NULL,
-    accion VARCHAR(50) NOT NULL,
-    detalle TEXT NOT NULL,
-    usuario_accion VARCHAR(100),
-    fecha_evento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `id_auditoria` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `id_evento` INT NOT NULL,
+    `desc_modulo` VARCHAR(100) NOT NULL,
+    `desc_accion` VARCHAR(50) NOT NULL,
+    `desc_detalle_accion` TEXT NOT NULL,
+    `usuario_accion` VARCHAR(100),
+    `desc_usuario_crea` VARCHAR(50) NOT NULL,
+    `desc_usuario_modf` VARCHAR(50) NOT NULL,
+    `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1,
     FOREIGN KEY (id_evento)
         REFERENCES m_eventos(id_evento)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
-
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_departamento (
