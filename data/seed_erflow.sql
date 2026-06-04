@@ -206,6 +206,11 @@ ON DUPLICATE KEY UPDATE
   desc_estado = VALUES(desc_estado),
   flg_activo = VALUES(flg_activo);
 
+INSERT INTO m_tipo_evento (desc_tipo_evento,desc_usuario_crea,desc_usuario_modf) VALUES
+	 ('FORMULARIO',"Super Admin","Super Admin"),
+	 ('API',"Super Admin","Super Admin"),
+	 ('JOB',"Super Admin","Super Admin"),
+	 ('OTRO',"Super Admin","Super Admin");
 
 -- m_eventos
 INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES

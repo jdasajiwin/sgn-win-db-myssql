@@ -244,11 +244,22 @@ CREATE TABLE IF NOT EXISTS `m_estados` (
     FOREIGN KEY (`id_tipo_estado`) REFERENCES `m_tipo_estado` (`id_tipo_estado`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `m_tipo_evento` (
+  `id_tipo_evento` SMALLINT NOT NULL AUTO_INCREMENT,
+  -- `cod_tipo_evento` varchar(12) NOT NULL,
+  `desc_tipo_evento` varchar(255) NOT NULL,
+  `desc_usuario_crea` VARCHAR(50) NOT NULL,
+  `desc_usuario_modf` VARCHAR(50) NOT NULL,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_tipo_evento`)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS `m_eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `cod_evento` VARCHAR(50) NOT NULL,
   `desc_evento` VARCHAR(255) NOT NULL,
   `detalle_template` VARCHAR(500) NOT NULL,
+  -- `id_tipo_evento` SMALLINT NOT NULL,
   `tipo_evento` ENUM('FORMULARIO', 'API', 'JOB', 'OTRO') NOT NULL DEFAULT 'OTRO',
   `desc_usuario_crea` VARCHAR(50) NOT NULL,
   `desc_usuario_modf` VARCHAR(50) NOT NULL,
@@ -257,10 +268,10 @@ CREATE TABLE IF NOT EXISTS `m_eventos` (
   `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_evento`),
   UNIQUE KEY `uq_m_eventos_cod_evento` (`cod_evento`),
-  KEY `ix_m_eventos_tipo_evento` (`tipo_evento`),
-  CONSTRAINT `fk_m_estados_m_eventos`
-    FOREIGN KEY (`id_estado`)
-    REFERENCES `m_estados` (`id_estado`)
+  KEY `ix_m_eventos_tipo_evento` (`tipo_evento`)
+  -- CONSTRAINT `fk_m_tipo_evento_m_eventos`
+  --  FOREIGN KEY (`id_tipo_evento`)
+  --  REFERENCES `m_tipo_evento` (`id_tipo_evento`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS t_auditoria (
