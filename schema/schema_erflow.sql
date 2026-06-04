@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS `m_estado_proceso` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_operador` (
@@ -57,7 +58,8 @@ CREATE TABLE IF NOT EXISTS `m_operador` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
@@ -67,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_estado_portabilidad` (
@@ -77,7 +80,8 @@ CREATE TABLE IF NOT EXISTS `m_estado_portabilidad` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
@@ -89,7 +93,8 @@ CREATE TABLE IF NOT EXISTS `m_plan_telefonia` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
@@ -99,7 +104,8 @@ CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
@@ -109,7 +115,8 @@ CREATE TABLE IF NOT EXISTS `m_motivo_cambio` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_estado_numero` (
@@ -119,7 +126,8 @@ CREATE TABLE IF NOT EXISTS `m_estado_numero` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_estado_usuario` (
@@ -129,7 +137,8 @@ CREATE TABLE IF NOT EXISTS `m_estado_usuario` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_acceso_usuario` (
@@ -139,7 +148,8 @@ CREATE TABLE IF NOT EXISTS `m_acceso_usuario` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_tipo_documento` (
@@ -149,7 +159,8 @@ CREATE TABLE IF NOT EXISTS `m_tipo_documento` (
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
     `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_tipo_servicio` (
@@ -159,6 +170,7 @@ CREATE TABLE IF NOT EXISTS `m_tipo_servicio` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_tipo_servicio`)
 ) ENGINE=InnoDB ;
 
@@ -170,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `m_tipo_zona` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_tipo_zona`)
 ) ENGINE=InnoDB ;
 
@@ -180,6 +193,7 @@ CREATE TABLE IF NOT EXISTS `m_proveedor_numeracion` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_proveedor_numeracion`)
 ) ENGINE=InnoDB;
 
@@ -191,6 +205,7 @@ CREATE TABLE IF NOT EXISTS `m_comercializador` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_comercializador`)
 ) ENGINE=InnoDB;
 
@@ -201,6 +216,7 @@ CREATE TABLE IF NOT EXISTS `m_estado_rango` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_estado_rango`)
 ) ENGINE=InnoDB ;
 
@@ -208,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `m_tipo_estado` (
   `id_tipo_estado` int NOT NULL AUTO_INCREMENT,
   `cod_tipo_estado` varchar(12) NOT NULL,
   `desc_tipo_estado` varchar(255) NOT NULL,
-  `flc_activo` bigint NOT NULL,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_tipo_estado`)
 ) ENGINE=InnoDB;
 
@@ -221,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `m_estados` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `flg_activo` BIGINT NOT NULL DEFAULT 1,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_estado`),
   UNIQUE KEY `uq_m_estados_cod_estado` (`cod_estado`),
   CONSTRAINT `fk_m_tipo_estado_m_estados`
@@ -238,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `m_eventos` (
   `desc_usuario_modf` VARCHAR(50) NOT NULL,
   `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_estado` TINYINT NOT NULL DEFAULT 1,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_evento`),
   UNIQUE KEY `uq_m_eventos_cod_evento` (`cod_evento`),
   KEY `ix_m_eventos_tipo_evento` (`tipo_evento`),
@@ -272,6 +288,7 @@ CREATE TABLE IF NOT EXISTS m_departamento (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_departamento`)
 ) ENGINE=InnoDB;
 
@@ -286,7 +303,7 @@ CREATE TABLE IF NOT EXISTS m_menus (
   desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  id_estado TINYINT NOT NULL DEFAULT 1,
+  flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_menu),
   UNIQUE KEY uq_m_menus_cod_menu (cod_menu),
   CONSTRAINT fk_m_estados_m_menus
@@ -303,7 +320,7 @@ CREATE TABLE IF NOT EXISTS m_opciones (
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   desc_opcion VARCHAR(150) NOT NULL,
   desc_ruta VARCHAR(200) NOT NULL,
-  id_estado TINYINT NOT NULL DEFAULT 1,
+  flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_opcion, id_menu),
   UNIQUE KEY uq_m_opciones_menu_opcion (id_menu, id_opcion),
   UNIQUE KEY uq_m_opciones_cod_menu (cod_menu),
@@ -321,7 +338,7 @@ CREATE TABLE IF NOT EXISTS m_roles (
   desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  id_estado TINYINT NOT NULL DEFAULT 1,
+  flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_rol),
   UNIQUE KEY uq_m_roles_cod_rol (cod_rol),
   CONSTRAINT fk_m_estados_m_roles
@@ -336,7 +353,7 @@ CREATE TABLE IF NOT EXISTS m_roles_menus (
   desc_usuario_modf VARCHAR(255) NOT NULL,
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  id_estado TINYINT NOT NULL,
+  flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_rol_menu),
   UNIQUE KEY uq_m_roles_menus_id_rol_menu (id_rol_menu),
   KEY ix_m_roles_menus_id_rol (id_rol),
@@ -364,6 +381,7 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
   fec_modf DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   id_estado TINYINT NOT NULL DEFAULT 1,
   id_acceso TINYINT NOT NULL DEFAULT 1,
+  flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_usuario),
   UNIQUE KEY uq_t_usuarios_desc_usuario (desc_usuario),
   UNIQUE KEY uq_t_usuarios_desc_email (desc_email),
@@ -399,7 +417,7 @@ CREATE TABLE IF NOT EXISTS t_usuario_rol (
   `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT (CURRENT_USER()),
   `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_estado` TINYINT NOT NULL DEFAULT 1,
+  `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_usuario_rol`),
   UNIQUE KEY uq_t_usuario_rol_id_usuario_rol (id_usuario_rol),
   KEY ix_t_usuario_rol_id_rol (id_rol),
@@ -463,6 +481,7 @@ CREATE TABLE IF NOT EXISTS t_rango_numeracion (
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
     `nom_app` VARCHAR(100),
+    `flg_activo` BIT NOT NULL DEFAULT 1,
     `nom_app_modf` VARCHAR(100),
     CONSTRAINT fk_m_tipo_servicio_t_rango_numeracion FOREIGN KEY (id_tipo_servicio)
         REFERENCES m_tipo_servicio(id_tipo_servicio)
