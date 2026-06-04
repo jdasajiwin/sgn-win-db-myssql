@@ -6,7 +6,7 @@ CREATE PROCEDURE spl_m_estados_combo_listar(
 )
 BEGIN
 
-	 SELECT  EST.id_estado
+	 SELECT  EST.flg_activo
 			,EST.cod_estado
 			,EST.desc_estado
 			,TIP.id_tipo_estado
@@ -22,7 +22,7 @@ BEGIN
             OR TRIM(p_cod_tipo_estado) = ''
             OR TIP.cod_tipo_estado = p_cod_tipo_estado
            )
-     ORDER BY TIP.cod_tipo_estado, EST.id_estado;
+     ORDER BY TIP.cod_tipo_estado, EST.flg_activo;
 
 END$$
 DELIMITER ;

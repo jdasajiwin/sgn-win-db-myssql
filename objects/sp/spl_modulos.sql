@@ -15,7 +15,7 @@ BEGIN
         desc_usuario_modf
     FROM m_menus
     WHERE id_menu_padre IS NULL
-      AND id_estado = 1
+      AND flg_activo = 1
       AND (p_cod_menu IS NULL OR cod_menu = p_cod_menu);
 END$$
 

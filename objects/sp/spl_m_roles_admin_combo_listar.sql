@@ -8,7 +8,7 @@ BEGIN
 			,RL.cod_rol
 			,RL.desc_rol
      FROM m_roles AS RL
-     WHERE RL.id_estado = 1
+     WHERE RL.flg_activo = 1
      AND RL.id_rol IN (1,2)
      ORDER BY RL.id_rol;
 
