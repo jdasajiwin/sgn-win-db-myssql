@@ -142,6 +142,49 @@ INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_de
 	 ('Ucayali','24','61','NO',"Super Admin","Super Admin",NOW(),NOW()),
 	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',"Super Admin","Super Admin",NOW(),NOW());
 
+
+INSERT INTO m_operador (cod_enrutador, desc_operador)
+VALUES
+('20', 'Entel Perú S.A.'),
+('21', 'América Móvil Perú S.A.C.'),
+('22', 'Telefónica del Perú S. A.A.'),
+('24', 'Viettel Perú S.A.C.'),
+('30', 'Convergia Perú S.A.'),
+('31', 'WI-NET TELECOM S.A.C.'),
+('32', 'Telefónica del Perú S.A.A.'),
+('34', 'Cirion technologies Perú S.A.'),
+('35', 'Gilat to home perú S.A.'),
+('36', 'Gamacom S.A.C.'),
+('37', 'Americatel Perú S.A.'),
+('38', 'Olo del Perú (antes Velatel Perú S.A.)'),
+('41', 'Valtron E.I.R.L.'),
+('42', 'Rural telecom S.A.C.'),
+('43', 'Amitel perú telecomunicaciones S.A.C.'),
+('45', 'Infoductos y Telecomunicaciones del Perú S.A.'),
+('46', 'GTD PERÚ S.A.'),
+('48', 'Global Backbone S.A.C.'),
+('49', 'Ingenyo S.A.C.'),
+('50', 'Ingeniería en gestión de negocios y oportunidades S.A.C.'),
+('51', 'Winner Systems S.A.C.'),
+('52', 'Inversiones OSA S.A.C.'),
+('53', 'Anura Perú S.A.C.'),
+('54', 'GLG PERÚ S.A.C.'),
+('55', 'Compañía Telefónica Andina S.A.'),
+('56', 'Novacloud S.A.C.'),
+('57', 'Win Empresas S.A.C.'),
+('58', 'Amitel Perú Telecomunicaciones S.A.C.'),
+('59', 'Moche Inversiones S.A.'),
+('60', 'Telefónica Multimedia S.A.'),
+('61', 'Fravatel E.I.R.L.'),
+('62', 'Inversiones Peruanas en Telecomunicaciones S.A.C.'),
+('63', 'Convexus Comunicaciones Redes y Sistemas S.A.C.'),
+('64', 'Intermax S.A.C.'),
+('65', 'Fiberlux S.A.C.'),
+('66', 'Yachay telecomunicaciones S.A.C.'),
+('68', 'WOW TEL S.A.C.'),
+('69', 'Fibermax telecom S.A.C.'),
+('70', 'Newtel Technologies S.A.C.');
+
 -- 0) Tipo de estado (padre de m_estados)
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flg_activo)
 VALUES
