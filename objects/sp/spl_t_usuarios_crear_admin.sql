@@ -44,7 +44,7 @@ BEGIN
 	INSERT INTO t_usuario_rol (
 		id_rol,
 		id_usuario,
-		id_estado
+		flg_activo
 	) VALUES (
 		p_id_rol,
 		v_id_usuario,

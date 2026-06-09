@@ -22,7 +22,7 @@ BEGIN
 	  AND id_estado = 1;
       
   SET v_idUsuario=(SELECT id_usuario FROM tmp_result);
-  SET v_countRol =(SELECT count(1) FROM t_usuario_rol WHERE id_usuario=v_idUsuario and id_estado=1);  
+  SET v_countRol =(SELECT count(1) FROM t_usuario_rol WHERE id_usuario=v_idUsuario and flg_activo=1);  
   
   SELECT TMR.*,v_countRol AS cant_roles FROM tmp_result AS TMR; 
     
