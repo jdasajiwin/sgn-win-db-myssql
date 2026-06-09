@@ -143,7 +143,7 @@ INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_de
 	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',"Super Admin","Super Admin",NOW(),NOW());
 
 -- 0) Tipo de estado (padre de m_estados)
-INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
+INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flg_activo)
 VALUES
   (1, 'GEN', 'General', 1),
   (2, 'TPSRV', 'Tipo proveedor servicio', 1),
@@ -282,7 +282,7 @@ INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_
 
 -- 2) Catalogos base
 INSERT INTO m_menus (
-  id_menu, cod_menu, cod_sub_menu, id_menu_padre, desc_menu, desc_ruta, id_estado
+  id_menu, cod_menu, cod_sub_menu, id_menu_padre, desc_menu, desc_ruta, flg_activo
 )
 VALUES
   (1, LEFT(REGEXP_REPLACE(UPPER('Usuarios'), '[^A-Z0-9]', ''), 12), NULL, NULL, 'Usuarios', '/usuarios', 1),
@@ -309,10 +309,10 @@ ON DUPLICATE KEY UPDATE
   id_menu_padre = VALUES(id_menu_padre),
   desc_menu = VALUES(desc_menu),
   desc_ruta = VALUES(desc_ruta),
-  id_estado = VALUES(id_estado);
+  flg_activo = VALUES(flg_activo);
 
 INSERT INTO m_opciones (
-  id_menu, id_opcion, cod_menu, desc_opcion, desc_ruta, id_estado
+  id_menu, id_opcion, cod_menu, desc_opcion, desc_ruta, flg_activo
 )
 VALUES
   (1, 1, LEFT(REGEXP_REPLACE(UPPER('Usuarios'), '[^A-Z0-9]', ''), 12), 'Usuarios', '/usuarios', 1),
@@ -335,9 +335,9 @@ ON DUPLICATE KEY UPDATE
   cod_menu = VALUES(cod_menu),
   desc_opcion = VALUES(desc_opcion),
   desc_ruta = VALUES(desc_ruta),
-  id_estado = VALUES(id_estado);
+  flg_activo = VALUES(flg_activo);
 
-INSERT INTO m_roles (id_rol, cod_rol, desc_rol, id_estado)
+INSERT INTO m_roles (id_rol, cod_rol, desc_rol, flg_activo)
 VALUES
   (1, LEFT(REGEXP_REPLACE(UPPER('Super Admin'), '[^A-Z0-9]', ''), 12), 'SuperAdmin', 1),
   (2, LEFT(REGEXP_REPLACE(UPPER('Admin TI'), '[^A-Z0-9]', ''), 12), 'Admin TI', 1),
@@ -347,10 +347,10 @@ VALUES
 ON DUPLICATE KEY UPDATE
   cod_rol = VALUES(cod_rol),
   desc_rol = VALUES(desc_rol),
-  id_estado = VALUES(id_estado);
+  flg_activo = VALUES(flg_activo);
 
 INSERT INTO m_roles_menus (
-  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, id_estado
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, flg_activo
 )
 VALUES
   (1, 1, 1, 'seed', 'seed', NOW(), 1),
@@ -374,7 +374,7 @@ ON DUPLICATE KEY UPDATE
   id_menu = VALUES(id_menu),
   desc_usuario_modf = VALUES(desc_usuario_modf),
   fec_modf = VALUES(fec_modf),
-  id_estado = VALUES(id_estado);
+  flg_activo = VALUES(flg_activo);
 
 DELETE FROM m_roles_opciones;
 
@@ -458,7 +458,7 @@ ON DUPLICATE KEY UPDATE
 
 -- 3) Relacion usuario-rol (solo SuperAdmin al usuario principal)
 INSERT INTO t_usuario_rol (
-  id_usuario_rol, id_rol, id_usuario, id_estado,
+  id_usuario_rol, id_rol, id_usuario, flg_activo,
   desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
@@ -468,7 +468,7 @@ VALUES (
 ON DUPLICATE KEY UPDATE
   id_rol = VALUES(id_rol),
   id_usuario = VALUES(id_usuario),
-  id_estado = VALUES(id_estado),
+  flg_activo = VALUES(flg_activo),
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
