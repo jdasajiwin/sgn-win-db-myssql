@@ -14,133 +14,133 @@
 START TRANSACTION;
 
 
-INSERT INTO m_acceso_usuario(desc_acceso)
+INSERT INTO m_acceso_usuario(desc_acceso, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf) VALUES
+   ('Permitido',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+   ('Bloqueado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
+
+
+INSERT INTO m_estado_usuario(desc_estado, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('Permitido'),
-('Bloqueado');
+('Activo',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Inactivo',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_estado_usuario(desc_estado)
+INSERT INTO m_estado_portabilidad(desc_estado_portabilidad, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('Activo'),
-('Inactivo');
+('Pendiente',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Programado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Portado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Rechazado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_estado_portabilidad(desc_estado_portabilidad)
+INSERT INTO m_motivo_rechazo(desc_motivo_rechazo, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('Pendiente'),
-('Programado'),
-('Portado'),
-('Rechazado');
+('Rechazado por ABDCP',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Número no pertenece a cliente',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Número con deuda',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Cambio de numero por portabilidad',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Otro',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_motivo_rechazo(desc_motivo_rechazo)
+INSERT INTO m_estado_numero(desc_estado_numero, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('Rechazado por ABDCP'),
-('Número no pertenece a cliente'),
-('Número con deuda'),
-('Cambio de numero por portabilidad');
+('No habilitado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Disponible',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Pre-reserva',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Bloqueado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Pendiente portabilidad',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('En uso',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Baja',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Bloqueado port in',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Port out',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_estado_numero(desc_estado_numero)
+INSERT INTO m_motivo_cambio(desc_motivo_cambio, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('No habilitado'),
-('Disponible'),
-('Pre-reserva'),
-('Bloqueado'),
-('Pendiente portabilidad'),
-('En uso'),
-('Baja'),
-('Bloqueado port in'),
-('Port out');
+('Cambio de titular',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Incidenncia con las APIs',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('A solicitud del VNO',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('A solicitud de OSIPTEL',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('A solicitud de INDECOPI',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Contingencia FreeSwitch',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Cambio de numero',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Cambio de numero por portabilidad',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_motivo_cambio(desc_motivo_cambio)
+INSERT INTO m_tipo_documento(desc_tipo_doc, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('Cambio de titular'),
-('Incidenncia con las APIs'),
-('A solicitud del VNO'),
-('A solicitud de OSIPTEL'),
-('A solicitud de INDECOPI'),
-('Contingencia FreeSwitch'),
-('Cambio de numero'),
-('Cambio de numero por portabilidad');
+('DNI',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('CE',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('RUC',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Pasaporte',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Carnet de identidad personal',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
-INSERT INTO m_tipo_documento(desc_tipo_doc)
+INSERT INTO m_estado_proceso(desc_estado, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf)
 VALUES
-('DNI'),
-('CE'),
-('RUC'),
-('Pasaporte'),
-('Carnet de identidad personal');
-
-
-INSERT INTO m_estado_proceso(desc_estado)
-VALUES
-('Pendiente'),
-('Procesando'),
-('Completado'),
-('Error');
+('Pendiente',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Procesando',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Completado',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+('Error',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
 INSERT INTO m_tipo_servicio (desc_tipo_servicio,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('Fijo',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:56:50','2026-05-08 16:56:50'),
-	 ('Movil',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:56:50','2026-05-08 16:56:50');
+	 ('Fijo',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50'),
+	 ('Movil',"Super Admin","Super Admin",'2026-05-08 16:56:50','2026-05-08 16:56:50');
 
 
 INSERT INTO m_tipo_zona (desc_tipo_zona,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('Rural',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:21','2026-05-08 16:57:21'),
-	 ('Urbano',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:21','2026-05-08 16:57:21');
+	 ('Rural',"Super Admin","Super Admin",'2026-05-08 16:57:21','2026-05-08 16:57:21'),
+	 ('Urbano',"Super Admin","Super Admin",'2026-05-08 16:57:21','2026-05-08 16:57:21');
 
 
 INSERT INTO m_proveedor_numeracion (desc_proveedor_numeracion,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('WI NET TELECOM',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32'),
-	 ('ON',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32'),
-	 ('GTD',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:32','2026-05-08 16:57:32');
+	 ('WI NET TELECOM',"Super Admin","Super Admin",'2026-05-08 16:57:32','2026-05-08 16:57:32'),
+	 ('ON',"Super Admin","Super Admin",'2026-05-08 16:57:32','2026-05-08 16:57:32'),
+	 ('GTD',"Super Admin","Super Admin",'2026-05-08 16:57:32','2026-05-08 16:57:32');
 
 
 
 INSERT INTO m_comercializador (desc_comercializador,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('WIN',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:57:41','2026-05-08 16:57:41');
+	 ('WIN',"Super Admin","Super Admin",'2026-05-08 16:57:41','2026-05-08 16:57:41');
 
 
 
 INSERT INTO m_estado_rango (desc_estado_rango,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('Habilitado',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:58:55','2026-05-08 16:58:55'),
-	 ('No habilitado',(CURRENT_USER()),(CURRENT_USER()),'2026-05-08 16:58:55','2026-05-08 16:58:55');
+	 ('Habilitado',"Super Admin","Super Admin",'2026-05-08 16:58:55','2026-05-08 16:58:55'),
+	 ('No habilitado',"Super Admin","Super Admin",'2026-05-08 16:58:55','2026-05-08 16:58:55');
 
 
 -- DEPARTAMENTOS
 
 INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('Amazonas','01','41','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Áncash','02','43','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Apurímac','03','83','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Arequipa','04','54','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Ayacucho','05','66','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Cajamarca','06','76','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Cusco','07','84','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Huancavelica','08','67','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Huánuco','09','62','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Ica','10','56','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
+	 ('Amazonas','01','41','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Áncash','02','43','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Apurímac','03','83','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Arequipa','04','54','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Ayacucho','05','66','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Cajamarca','06','76','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Cusco','07','84','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Huancavelica','08','67','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Huánuco','09','62','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Ica','10','56','NO',"Super Admin","Super Admin",NOW(),NOW());
 INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('Junín','11','64','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('La Libertad','12','44','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Lambayeque','13','74','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Lima','14','1','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Loreto','15','65','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Madre de Dios','16','82','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Moquegua','17','53','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Pasco','18','63','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Piura','19','73','SI',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Puno','20','51','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
+	 ('Junín','11','64','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('La Libertad','12','44','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Lambayeque','13','74','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Lima','14','1','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Loreto','15','65','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Madre de Dios','16','82','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Moquegua','17','53','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Pasco','18','63','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Piura','19','73','SI',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Puno','20','51','NO',"Super Admin","Super Admin",NOW(),NOW());
 INSERT INTO m_departamento (desc_departamento,cod_ubigeo_departamento,cod_tel_departamento,cobertura_departamento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf) VALUES
-	 ('San Martín','21','42','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Tacna','22','42','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Tumbes','23','72','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Ucayali','24','61','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW()),
-	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',(CURRENT_USER()),(CURRENT_USER()),NOW(),NOW());
+	 ('San Martín','21','42','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Tacna','22','42','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Tumbes','23','72','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Ucayali','24','61','NO',"Super Admin","Super Admin",NOW(),NOW()),
+	 ('Callao (Provincia Constitucional del Callao)','25','1','NO',"Super Admin","Super Admin",NOW(),NOW());
 
 -- 0) Tipo de estado (padre de m_estados)
 INSERT INTO m_tipo_estado (id_tipo_estado, cod_tipo_estado, desc_tipo_estado, flc_activo)
@@ -213,72 +213,72 @@ INSERT INTO m_tipo_evento (desc_tipo_evento,desc_usuario_crea,desc_usuario_modf)
 	 ('OTRO',"Super Admin","Super Admin");
 
 -- m_eventos
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('USER_REG','CREAR USUARIO','Se creó el usuario {{usuario}} {{variable1}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 17:53:34',1),
-	 ('USER_EDIT','EDITAR USUARIO','Se actualizaron datos en {{modulo}} - {{usuario}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 17:50:47',1),
-	 ('USER_DEL','ELIMINAR USUARIO','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('USER_EXPORT','EXPORTAR USUARIO','Se exportó información del módulo {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('RN_REG','CREAR RANGO DE NUMERACIÓN','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('RN_CAMBIAR_EST','CAMBIAR ESTADO RANGO DE NUMERACIÓN','Se cambió el estado de un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('RN_EXPORT','EXPORTAR RANGO DE NUMERACIÓN','Se exportó información del módulo {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('NUM_TEL_EDIT','EDITAR NUMERO TELEFÓNICO','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('NUM_TEL_EXPORT','EXPORTAR NUMERO TELEFÓNICO','Se exportó información del módulo {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PORT_IMPORT','IMPORTAR PORTABILIDAD','Se importó información en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('PORT_EDIT','EDITAR PORTABILIDAD','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PORT_EXPORT','EXPORTAR PORTABILIDAD','Se exportó información del módulo {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('NUM_WINET','ACTIVACIÓN','Se realizó una activación en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('NUM_PORTA','ACTIVACIÓN','Se realizó una activación por portabilidad en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_RES_BAJA_REG','CREAR DÍAS DE RESERVA DE BAJA','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_RES_BAJA_EDIT','EDITAR DÍAS DE RESERVA DE BAJA','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_RES_BAJA_DEL','ELIMINAR DÍAS DE RESERVA DE BAJA','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_PRE_RESER_REG','CREAR DÍAS DE PRE-RESERVA','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_PRE_RESER_EDIT','EDITAR DÍAS DE PRE-RESERVA','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DIA_PRE_RESER_DEL','ELIMINAR DÍAS DE PRE-RESERVA','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('CANT_NUM_REG','CREAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('CANT_NUM_EDIT','EDITAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('CANT_NUM_DEL','ELIMINAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PROV_NUM_REG','CREAR PROVEEDOR DE NUMERACIÓN','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PROV_NUM_EDIT','EDITAR PROVEEDOR DE NUMERACIÓN','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PROV_NUM_DEL','ELIMINAR PROVEEDOR DE NUMERACIÓN','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('COMER_REG','CREAR COMERCIALIZADOR','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('COMER_EDIT','EDITAR COMERCIALIZADOR','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('COMER_DEL','ELIMINAR COMERCIALIZADOR','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('OPERA_REG','CREAR OPERADORES','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('OPERA_EDIT','EDITAR OPERADORES','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('OPERA_DEL','ELIMINAR OPERADORES','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('MOT_CAMB_REG','CREAR MOTIVO DEL CAMBIO DE ESTADO','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('MOT_CAMB_EDIT','EDITAR MOTIVO DEL CAMBIO DE ESTADO','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('MOT_CAMB_DEL','ELIMINAR MOTIVO DEL CAMBIO DE ESTADO','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PL_TEL_REG','CREAR PLANES DE TELEFONÍA','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PL_TEL_EDIT','EDITAR PLANES DE TELEFONÍA','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('PL_TEL_DEL','ELIMINAR PLANES DE TELEFONÍA','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DEPART_REG','CREAR DEPARTAMENTOS','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('DEPART_EDIT','EDITAR DEPARTAMENTOS','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('DEPART_DEL','ELIMINAR DEPARTAMENTOS','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('EST_NUM_TEL_REG','CREAR ESTADOS DEL NÚMERO TELEFÓNICO','Se creó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('EST_NUM_TEL_EDIT','EDITAR ESTADOS DEL NÚMERO TELEFÓNICO','Se actualizaron datos en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('EST_NUM_TEL_DEL','ELIMINAR ESTADOS DEL NÚMERO TELEFÓNICO','Se eliminó un registro en {{modulo}}','FORMULARIO','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_OBT_NUM','OBTENER NÚMERO','Se obtuvo un número desde {{modulo}} {{usuario}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 12:32:22',1),
-	 ('API_REG_NUM_PORTIN','REGISTRAR NÚMERO PORT IN','Se creó un registro en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_ACT_NUM_FREESW','ACTIVACIÓN DE NÚMERO TELEFÓNICO EN FREESWITCH','Se activó un número telefónico en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_NUM_NCE','GESTIÓN DEL NÚMERO TELEFÓNICO EN NCE','Se realizó una gestión de número telefónico en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_LIB_NUM_BL','LIBERAR NÚMERO BLOQUEADO','Se liberó un número bloqueado en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_CONS_NUM','CONSULTA DE NÚMERO ','Se realizó una consulta de número en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
-INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,id_estado) VALUES
-	 ('API_CAM_NUM','CAMBIO DE NÚMERO TELEFÓNICO','Se realizó un cambio de número telefónico en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_CAM_NUM_PORT','CAMBIO DE NÚMERO POR PORTABILIDAD','Se realizó un cambio de número por portabilidad en API','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 12:30:21',1),
-	 ('API_BAJA_NUM','BAJA DE NÚMERO TELEFÓNICO','Se dio de baja un número telefónico en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_CB_TITU','CAMBIO DE TITULARIDAD DE NÚMERO TELEFONICO ','Se realizó un cambio de titularidad en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_PORTIN_DEL','ELIMINAR NÚMERO BLOQUEADO PORT IN','Se eliminó un registro en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_NOT_PORTOUT','PORT OUT CON NOTIFICACIÓN A LAS VNOs','Se notificó un proceso de port out en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_NOT_STOCK','Noticación de stock mínimo de numeración','Se generó una notificación de stock mínimo en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('API_ALERT_BAJA_FREESW','Alerta de baja pendiente en FreeSwitch','Se generó una alerta de baja pendiente en {{modulo}}','API','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('JOB_LIB_AUTO','LIBERACIÓN AUTOMÁTICA DE NÚMEROS BLOQUEADOS','Se ejecutó la liberación automática de números bloqueados en {{modulo}}','JOB','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
-	 ('JOB_PORTA','Proceso automático de portabilidad','Se ejecutó el proceso automático de portabilidad en {{modulo}}','JOB','ADMIN','ADMIN','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('USER_REG','CREAR USUARIO','Se creó el usuario {{usuario}} {{variable1}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 17:53:34',1),
+	 ('USER_EDIT','EDITAR USUARIO','Se actualizaron datos en {{modulo}} - {{usuario}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 17:50:47',1),
+	 ('USER_DEL','ELIMINAR USUARIO','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('USER_EXPORT','EXPORTAR USUARIO','Se exportó información del módulo {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('RN_REG','CREAR RANGO DE NUMERACIÓN','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('RN_CAMBIAR_EST','CAMBIAR ESTADO RANGO DE NUMERACIÓN','Se cambió el estado de un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('RN_EXPORT','EXPORTAR RANGO DE NUMERACIÓN','Se exportó información del módulo {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('NUM_TEL_EDIT','EDITAR NUMERO TELEFÓNICO','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('NUM_TEL_EXPORT','EXPORTAR NUMERO TELEFÓNICO','Se exportó información del módulo {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PORT_IMPORT','IMPORTAR PORTABILIDAD','Se importó información en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('PORT_EDIT','EDITAR PORTABILIDAD','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PORT_EXPORT','EXPORTAR PORTABILIDAD','Se exportó información del módulo {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('NUM_WINET','ACTIVACIÓN','Se realizó una activación en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('NUM_PORTA','ACTIVACIÓN','Se realizó una activación por portabilidad en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_RES_BAJA_REG','CREAR DÍAS DE RESERVA DE BAJA','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_RES_BAJA_EDIT','EDITAR DÍAS DE RESERVA DE BAJA','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_RES_BAJA_DEL','ELIMINAR DÍAS DE RESERVA DE BAJA','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_PRE_RESER_REG','CREAR DÍAS DE PRE-RESERVA','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_PRE_RESER_EDIT','EDITAR DÍAS DE PRE-RESERVA','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DIA_PRE_RESER_DEL','ELIMINAR DÍAS DE PRE-RESERVA','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('CANT_NUM_REG','CREAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('CANT_NUM_EDIT','EDITAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('CANT_NUM_DEL','ELIMINAR CANTIDAD MÍNIMA DE NÚMEROS A GENERAR','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PROV_NUM_REG','CREAR PROVEEDOR DE NUMERACIÓN','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PROV_NUM_EDIT','EDITAR PROVEEDOR DE NUMERACIÓN','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PROV_NUM_DEL','ELIMINAR PROVEEDOR DE NUMERACIÓN','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('COMER_REG','CREAR COMERCIALIZADOR','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('COMER_EDIT','EDITAR COMERCIALIZADOR','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('COMER_DEL','ELIMINAR COMERCIALIZADOR','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('OPERA_REG','CREAR OPERADORES','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('OPERA_EDIT','EDITAR OPERADORES','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('OPERA_DEL','ELIMINAR OPERADORES','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('MOT_CAMB_REG','CREAR MOTIVO DEL CAMBIO DE ESTADO','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('MOT_CAMB_EDIT','EDITAR MOTIVO DEL CAMBIO DE ESTADO','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('MOT_CAMB_DEL','ELIMINAR MOTIVO DEL CAMBIO DE ESTADO','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PL_TEL_REG','CREAR PLANES DE TELEFONÍA','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PL_TEL_EDIT','EDITAR PLANES DE TELEFONÍA','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('PL_TEL_DEL','ELIMINAR PLANES DE TELEFONÍA','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DEPART_REG','CREAR DEPARTAMENTOS','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('DEPART_EDIT','EDITAR DEPARTAMENTOS','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('DEPART_DEL','ELIMINAR DEPARTAMENTOS','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('EST_NUM_TEL_REG','CREAR ESTADOS DEL NÚMERO TELEFÓNICO','Se creó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('EST_NUM_TEL_EDIT','EDITAR ESTADOS DEL NÚMERO TELEFÓNICO','Se actualizaron datos en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('EST_NUM_TEL_DEL','ELIMINAR ESTADOS DEL NÚMERO TELEFÓNICO','Se eliminó un registro en {{modulo}}','FORMULARIO','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_OBT_NUM','OBTENER NÚMERO','Se obtuvo un número desde {{modulo}} {{usuario}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 12:32:22',1),
+	 ('API_REG_NUM_PORTIN','REGISTRAR NÚMERO PORT IN','Se creó un registro en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_ACT_NUM_FREESW','ACTIVACIÓN DE NÚMERO TELEFÓNICO EN FREESWITCH','Se activó un número telefónico en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_NUM_NCE','GESTIÓN DEL NÚMERO TELEFÓNICO EN NCE','Se realizó una gestión de número telefónico en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_LIB_NUM_BL','LIBERAR NÚMERO BLOQUEADO','Se liberó un número bloqueado en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_CONS_NUM','CONSULTA DE NÚMERO ','Se realizó una consulta de número en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
+INSERT INTO m_eventos (cod_evento,desc_evento,detalle_template,tipo_evento,desc_usuario_crea,desc_usuario_modf,fec_creacion,fec_modf,flg_activo) VALUES
+	 ('API_CAM_NUM','CAMBIO DE NÚMERO TELEFÓNICO','Se realizó un cambio de número telefónico en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_CAM_NUM_PORT','CAMBIO DE NÚMERO POR PORTABILIDAD','Se realizó un cambio de número por portabilidad en API','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 12:30:21',1),
+	 ('API_BAJA_NUM','BAJA DE NÚMERO TELEFÓNICO','Se dio de baja un número telefónico en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_CB_TITU','CAMBIO DE TITULARIDAD DE NÚMERO TELEFONICO ','Se realizó un cambio de titularidad en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_PORTIN_DEL','ELIMINAR NÚMERO BLOQUEADO PORT IN','Se eliminó un registro en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_NOT_PORTOUT','PORT OUT CON NOTIFICACIÓN A LAS VNOs','Se notificó un proceso de port out en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_NOT_STOCK','Noticación de stock mínimo de numeración','Se generó una notificación de stock mínimo en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('API_ALERT_BAJA_FREESW','Alerta de baja pendiente en FreeSwitch','Se generó una alerta de baja pendiente en {{modulo}}','API','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('JOB_LIB_AUTO','LIBERACIÓN AUTOMÁTICA DE NÚMEROS BLOQUEADOS','Se ejecutó la liberación automática de números bloqueados en {{modulo}}','JOB','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1),
+	 ('JOB_PORTA','Proceso automático de portabilidad','Se ejecutó el proceso automático de portabilidad en {{modulo}}','JOB','Super Admin','Super Admin','2026-05-19 10:21:53','2026-05-19 10:21:53',1);
 
 -- 2) Catalogos base
 INSERT INTO m_menus (
@@ -353,22 +353,22 @@ INSERT INTO m_roles_menus (
   id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, id_estado
 )
 VALUES
-  (1, 1, 1, 'seed', 'seed', 0, 1),
-  (2, 1, 2, 'seed', 'seed', 0, 1),
-  (3, 1, 3, 'seed', 'seed', 0, 1),
-  (4, 1, 4, 'seed', 'seed', 0, 1),
-  (5, 1, 5, 'seed', 'seed', 0, 1),
-  (6, 1, 6, 'seed', 'seed', 0, 1),
-  (7, 1, 7, 'seed', 'seed', 0, 1),
-  (8, 1, 8, 'seed', 'seed', 0, 1),
-  (9, 1, 9, 'seed', 'seed', 0, 1),
-  (10, 1, 10, 'seed', 'seed', 0, 1),
-  (11, 1, 11, 'seed', 'seed', 0, 1),
-  (12, 1, 12, 'seed', 'seed', 0, 1),
-  (13, 1, 13, 'seed', 'seed', 0, 1),
-  (14, 1, 14, 'seed', 'seed', 0, 1),
-  (15, 1, 15, 'seed', 'seed', 0, 1),
-  (16, 1, 16, 'seed', 'seed', 0, 1)
+  (1, 1, 1, 'seed', 'seed', NOW(), 1),
+  (2, 1, 2, 'seed', 'seed', NOW(), 1),
+  (3, 1, 3, 'seed', 'seed', NOW(), 1),
+  (4, 1, 4, 'seed', 'seed', NOW(), 1),
+  (5, 1, 5, 'seed', 'seed', NOW(), 1),
+  (6, 1, 6, 'seed', 'seed', NOW(), 1),
+  (7, 1, 7, 'seed', 'seed', NOW(), 1),
+  (8, 1, 8, 'seed', 'seed', NOW(), 1),
+  (9, 1, 9, 'seed', 'seed', NOW(), 1),
+  (10, 1, 10, 'seed', 'seed', NOW(), 1),
+  (11, 1, 11, 'seed', 'seed', NOW(), 1),
+  (12, 1, 12, 'seed', 'seed', NOW(), 1),
+  (13, 1, 13, 'seed', 'seed', NOW(), 1),
+  (14, 1, 14, 'seed', 'seed', NOW(), 1),
+  (15, 1, 15, 'seed', 'seed', NOW(), 1),
+  (16, 1, 16, 'seed', 'seed', NOW(), 1)
 ON DUPLICATE KEY UPDATE
   id_rol = VALUES(id_rol),
   id_menu = VALUES(id_menu),
