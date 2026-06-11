@@ -27,8 +27,8 @@ BEGIN
             INNER JOIN m_roles r
                 ON r.id_rol = ur.id_rol
             WHERE ur.id_usuario = u.id_usuario
-              AND ur.id_estado = 1
-              AND r.id_estado = 1
+              AND ur.flg_activo = 1
+              AND r.flg_activo = 1
         ) AS roles
     FROM t_usuarios u
     WHERE
@@ -48,7 +48,7 @@ BEGIN
                 FROM t_usuario_rol ur
                 WHERE ur.id_usuario = u.id_usuario
                   AND ur.id_rol = p_id_rol
-                  AND ur.id_estado = 1
+                  AND ur.flg_activo = 1
             )
         )
         AND u.desc_tipo_login = 'AD'
