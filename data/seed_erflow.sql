@@ -339,13 +339,18 @@ VALUES
   (9, LEFT(REGEXP_REPLACE(UPPER('Numeros Portados'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Contingencia de activacion freeswitch'), '[^A-Z0-9]', ''), 12), 7, 'Numeros Portados', '/contingencia/numeros-portados', 1),
   (10, LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), NULL, NULL, 'Mantenimientos', '/mantenimientos', 1),
   (11, LEFT(REGEXP_REPLACE(UPPER('SGN parametros generales'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Parametros generales SGN', '/mantenimientos/parametros-sgn', 1),
-  (12, LEFT(REGEXP_REPLACE(UPPER('Proveedores de numeracion'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Proveedores de numeracion', '/mantenimientos/proveedores-numeracion', 1),
-  (13, LEFT(REGEXP_REPLACE(UPPER('Comercializador'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Comercializador', '/mantenimientos/comercializador', 1),
-  (14, LEFT(REGEXP_REPLACE(UPPER('Operadores'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Operadores', '/mantenimientos/operadores', 1),
-  (15, LEFT(REGEXP_REPLACE(UPPER('Motivo del cambio de estado'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Motivo del cambio de estado', '/mantenimientos/motivo-cambio-estado', 1),
-  (16, LEFT(REGEXP_REPLACE(UPPER('Freeswitch parametros generales'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Parametros generales Freeswitch', '/mantenimientos/parametros-freeswitch', 1),
-  (17, LEFT(REGEXP_REPLACE(UPPER('Departamento'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Departamento', '/mantenimientos/departamento', 1),
-  (18, LEFT(REGEXP_REPLACE(UPPER('Estados del numero telefonico'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Estados del numero telefonico', '/mantenimientos/estados-numero', 1)
+
+  (12, LEFT(REGEXP_REPLACE(UPPER('Días de reserva de baja'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('SGN parametros generales'), '[^A-Z0-9]', ''), 12), 11, 'Días de reserva de baja', '/mantenimientos/parametros-sgn/dias-reserva-baja', 1),
+  (13, LEFT(REGEXP_REPLACE(UPPER('Días de pre-reserva'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('SGN parametros generales'), '[^A-Z0-9]', ''), 12), 11, 'Días de pre-reserva', '/mantenimientos/parametros-sgn/dias-pre-reserva', 1),
+  (14, LEFT(REGEXP_REPLACE(UPPER('Cantidad mínima de rangos a generar'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('SGN parametros generales'), '[^A-Z0-9]', ''), 12), 11, 'Cantidad mínima de rangos a generar', '/mantenimientos/parametros-sgn/cantidad-minima-rangos', 1),
+
+  (15, LEFT(REGEXP_REPLACE(UPPER('Proveedores de numeracion'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Proveedores de numeracion', '/mantenimientos/proveedores-numeracion', 1),
+  (16, LEFT(REGEXP_REPLACE(UPPER('Comercializador'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Comercializador', '/mantenimientos/comercializador', 1),
+  (17, LEFT(REGEXP_REPLACE(UPPER('Operadores'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Operadores', '/mantenimientos/operadores', 1),
+  (18, LEFT(REGEXP_REPLACE(UPPER('Motivo del cambio de estado'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Motivo del cambio de estado', '/mantenimientos/motivo-cambio-estado', 1),
+  (19, LEFT(REGEXP_REPLACE(UPPER('Freeswitch parametros generales'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Parametros generales Freeswitch', '/mantenimientos/parametros-freeswitch', 1),
+  (20, LEFT(REGEXP_REPLACE(UPPER('Departamento'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Departamento', '/mantenimientos/departamento', 1),
+  (21, LEFT(REGEXP_REPLACE(UPPER('Estados del numero telefonico'), '[^A-Z0-9]', ''), 12), LEFT(REGEXP_REPLACE(UPPER('Mantenimientos'), '[^A-Z0-9]', ''), 12), 10, 'Estados del numero telefonico', '/mantenimientos/estados-numero', 1)
 ON DUPLICATE KEY UPDATE
   cod_menu = VALUES(cod_menu),
   cod_sub_menu = VALUES(cod_sub_menu),
