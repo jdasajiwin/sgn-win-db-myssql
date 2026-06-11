@@ -411,7 +411,90 @@ VALUES
   (13, 1, 13, 'seed', 'seed', NOW(), 1),
   (14, 1, 14, 'seed', 'seed', NOW(), 1),
   (15, 1, 15, 'seed', 'seed', NOW(), 1),
-  (16, 1, 16, 'seed', 'seed', NOW(), 1)
+  (16, 1, 16, 'seed', 'seed', NOW(), 1),
+  (17, 1, 17, 'seed', 'seed', NOW(), 1),
+  (18, 1, 18, 'seed', 'seed', NOW(), 1),
+  (19, 1, 19, 'seed', 'seed', NOW(), 1),
+  (20, 1, 20, 'seed', 'seed', NOW(), 1),
+  (21, 1, 21, 'seed', 'seed', NOW(), 1)
+ON DUPLICATE KEY UPDATE
+  id_rol = VALUES(id_rol),
+  id_menu = VALUES(id_menu),
+  desc_usuario_modf = VALUES(desc_usuario_modf),
+  fec_modf = VALUES(fec_modf),
+  flg_activo = VALUES(flg_activo);
+
+INSERT INTO m_roles_menus (
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, flg_activo
+)
+VALUES
+  (21, 2, 1, 'seed', 'seed', NOW(), 1),
+  (22, 2, 2, 'seed', 'seed', NOW(), 1),
+  (23, 2, 3, 'seed', 'seed', NOW(), 1)
+ON DUPLICATE KEY UPDATE
+  id_rol = VALUES(id_rol),
+  id_menu = VALUES(id_menu),
+  desc_usuario_modf = VALUES(desc_usuario_modf),
+  fec_modf = VALUES(fec_modf),
+  flg_activo = VALUES(flg_activo);
+
+INSERT INTO m_roles_menus (
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, flg_activo
+)
+VALUES
+  (24, 3, 1, 'seed', 'seed', NOW(), 1),
+  (25, 3, 2, 'seed', 'seed', NOW(), 1),
+  (26, 3, 3, 'seed', 'seed', NOW(), 1),
+  (27, 3, 4, 'seed', 'seed', NOW(), 1),
+  (28, 3, 5, 'seed', 'seed', NOW(), 1),
+  (29, 3, 6, 'seed', 'seed', NOW(), 1),
+  (30, 3, 10, 'seed', 'seed', NOW(), 1),
+  (31, 3, 11, 'seed', 'seed', NOW(), 1),
+  (32, 3, 12, 'seed', 'seed', NOW(), 1),
+  (33, 3, 13, 'seed', 'seed', NOW(), 1),
+  (34, 3, 14, 'seed', 'seed', NOW(), 1),
+  (35, 3, 15, 'seed', 'seed', NOW(), 1),
+  (36, 3, 16, 'seed', 'seed', NOW(), 1),
+  (37, 3, 17, 'seed', 'seed', NOW(), 1),
+  (38, 3, 18, 'seed', 'seed', NOW(), 1),
+  (39, 3, 19, 'seed', 'seed', NOW(), 1),
+  (40, 3, 20, 'seed', 'seed', NOW(), 1),
+  (41, 3, 21, 'seed', 'seed', NOW(), 1)
+ON DUPLICATE KEY UPDATE
+  id_rol = VALUES(id_rol),
+  id_menu = VALUES(id_menu),
+  desc_usuario_modf = VALUES(desc_usuario_modf),
+  fec_modf = VALUES(fec_modf),
+  flg_activo = VALUES(flg_activo);
+
+INSERT INTO m_roles_menus (
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, flg_activo
+)
+VALUES
+  (41, 4, 1, 'seed', 'seed', NOW(), 1),
+  (42, 4, 2, 'seed', 'seed', NOW(), 1),
+  (43, 4, 3, 'seed', 'seed', NOW(), 1),
+  (44, 4, 5, 'seed', 'seed', NOW(), 1),
+  (45, 4, 6, 'seed', 'seed', NOW(), 1),
+  (46, 4, 7, 'seed', 'seed', NOW(), 1),
+  (47, 4, 8, 'seed', 'seed', NOW(), 1),
+  (48, 4, 9, 'seed', 'seed', NOW(), 1)
+ON DUPLICATE KEY UPDATE
+  id_rol = VALUES(id_rol),
+  id_menu = VALUES(id_menu),
+  desc_usuario_modf = VALUES(desc_usuario_modf),
+  fec_modf = VALUES(fec_modf),
+  flg_activo = VALUES(flg_activo);
+
+INSERT INTO m_roles_menus (
+  id_rol_menu, id_rol, id_menu, desc_usuario_crea, desc_usuario_modf, fec_modf, flg_activo
+)
+VALUES
+  (49, 5, 5, 'seed', 'seed', NOW(), 1),
+  (50, 5, 6, 'seed', 'seed', NOW(), 1),
+  (51, 5, 7, 'seed', 'seed', NOW(), 1),
+  (52, 5, 8, 'seed', 'seed', NOW(), 1),
+  (53, 5, 9, 'seed', 'seed', NOW(), 1)
 ON DUPLICATE KEY UPDATE
   id_rol = VALUES(id_rol),
   id_menu = VALUES(id_menu),
