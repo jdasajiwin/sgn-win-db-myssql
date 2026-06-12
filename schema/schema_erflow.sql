@@ -615,7 +615,7 @@ CREATE TABLE IF NOT EXISTS t_numero_telefonico (
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
     CONSTRAINT fk_m_plan_telefonico_t_numero_telefonico FOREIGN KEY (id_plan_telefonia)
-        REFERENCES m_plan(id_plan_telefonia)
+        REFERENCES m_plan_telefonia(id_plan_telefonia)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
     CONSTRAINT fk_m_tipo_documento_t_numero_telefonico FOREIGN KEY (id_tipo_doc)
