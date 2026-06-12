@@ -603,6 +603,150 @@ ON DUPLICATE KEY UPDATE
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
+
+-- Seed data para permisos basado en DB-002-ESPECIFICACIONES-ROLES-PERMISOS.md
+
+-- Insertar permisos base
+INSERT INTO m_permisos (cod_permiso, desc_modulo, desc_submodulo, desc_accion, desc_permiso, desc_usuario_crea, flg_activo) VALUES
+-- Usuarios / Gestión de usuario
+('usuario.agregar', 'Usuarios', 'Gestión de usuario', 'Agregar', 'Permite agregar nuevos usuarios', 'Super Admin', 1),
+('usuario.consultar', 'Usuarios', 'Gestión de usuario', 'Consultar', 'Permite consultar usuarios', 'Super Admin', 1),
+('usuario.editar', 'Usuarios', 'Gestión de usuario', 'Editar', 'Permite editar usuarios', 'Super Admin', 1),
+('usuario.exportar', 'Usuarios', 'Gestión de usuario', 'Exportar', 'Permite exportar datos de usuarios', 'Super Admin', 1),
+('usuario.todas', 'Usuarios', 'Gestión de usuario', 'Todas', 'Permite todas las acciones en gestión de usuarios', 'Super Admin', 1),
+
+-- Usuarios / Trazabilidad de evento
+('trazabilidad.consultar', 'Usuarios', 'Trazabilidad de evento', 'Consultar', 'Permite consultar trazabilidad de eventos', 'Super Admin', 1),
+('trazabilidad.exportar', 'Usuarios', 'Trazabilidad de evento', 'Exportar', 'Permite exportar trazabilidad de eventos', 'Super Admin', 1),
+('trazabilidad.todas', 'Usuarios', 'Trazabilidad de evento', 'Todas', 'Permite todas las acciones en trazabilidad', 'Super Admin', 1),
+
+-- Rangos de numeración
+('rango_numeracion.agregar', 'Rangos de numeración', NULL, 'Agregar', 'Permite agregar rangos de numeración', 'Super Admin', 1),
+('rango_numeracion.exportar', 'Rangos de numeración', NULL, 'Exportar', 'Permite exportar rangos de numeración', 'Super Admin', 1),
+('rango_numeracion.consultar', 'Rangos de numeración', NULL, 'Consultar', 'Permite consultar rangos de numeración', 'Super Admin', 1),
+('rango_numeracion.habilitar', 'Rangos de numeración', NULL, 'Habilitar', 'Permite habilitar rangos de numeración', 'Super Admin', 1),
+('rango_numeracion.todas', 'Rangos de numeración', NULL, 'Todas', 'Permite todas las acciones en rangos de numeración', 'Super Admin', 1),
+
+-- Números telefónicos
+('numero_telefonico.consultar', 'Números telefónicos', NULL, 'Consultar', 'Permite consultar números telefónicos', 'Super Admin', 1),
+('numero_telefonico.editar', 'Números telefónicos', NULL, 'Editar', 'Permite editar números telefónicos', 'Super Admin', 1),
+('numero_telefonico.editar_estados_especiales', 'Números telefónicos', NULL, 'Editar (estados: Disponible, Bloqueado, Bloqueado port in, Pendiente portabilidad, Pre-reserva)', 'Permite editar estados especiales de números telefónicos', 'Super Admin', 1),
+('numero_telefonico.exportar', 'Números telefónicos', NULL, 'Exportar', 'Permite exportar números telefónicos', 'Super Admin', 1),
+
+-- Contingencia de activación Freeswitch
+('contingencia_freeswitch.consultar', 'Contingencia de activación Freeswitch', NULL, 'Consultar', 'Permite consultar estado de contingencia', 'Super Admin', 1),
+('contingencia_freeswitch.activar', 'Contingencia de activación Freeswitch', NULL, 'Activar', 'Permite activar contingencia', 'Super Admin', 1),
+
+-- Gestión de Portabilidad
+('portabilidad.consultar', 'Gestión de Portabilidad', NULL, 'Consultar', 'Permite consultar portabilidad', 'Super Admin', 1),
+('portabilidad.editar', 'Gestión de Portabilidad', NULL, 'Editar', 'Permite editar portabilidad', 'Super Admin', 1),
+('portabilidad.exportar', 'Gestión de Portabilidad', NULL, 'Exportar', 'Permite exportar portabilidad', 'Super Admin', 1),
+('portabilidad.descargar_plantilla', 'Gestión de Portabilidad', NULL, 'Descargar Plantilla', 'Permite descargar plantilla de portabilidad', 'Super Admin', 1),
+('portabilidad.importar_plantilla', 'Gestión de Portabilidad', NULL, 'Importar Plantilla', 'Permite importar plantilla de portabilidad', 'Super Admin', 1),
+
+-- Mantenimientos
+('mantenimiento.parametros_sgn', 'Mantenimientos', NULL, 'Parámetros generales SGN', 'Permite editar parámetros de SGN', 'Super Admin', 1),
+('mantenimiento.parametros_freeswitch', 'Mantenimientos', NULL, 'Parámetros generales Freeswitch', 'Permite editar parámetros de Freeswitch', 'Super Admin', 1),
+('mantenimiento.proveedores', 'Mantenimientos', NULL, 'Proveedores de numeración', 'Permite gestionar proveedores', 'Super Admin', 1),
+('mantenimiento.comercializadores', 'Mantenimientos', NULL, 'Comercializadores', 'Permite gestionar comercializadores', 'Super Admin', 1),
+('mantenimiento.operadores', 'Mantenimientos', NULL, 'Operadores', 'Permite gestionar operadores', 'Super Admin', 1),
+('mantenimiento.motivo_cambio_estado', 'Mantenimientos', NULL, 'Motivo de cambio del estado del número', 'Permite editar motivos de cambio', 'Super Admin', 1),
+('mantenimiento.departamento', 'Mantenimientos', NULL, 'Departamento', 'Permite gestionar departamentos', 'Super Admin', 1),
+('mantenimiento.estado_numero', 'Mantenimientos', NULL, 'Estados del número telefónico', 'Permite gestionar estados de número', 'Super Admin', 1)
+ON DUPLICATE KEY UPDATE
+  cod_permiso = VALUES(cod_permiso),
+  desc_modulo = VALUES(desc_modulo),
+  desc_submodulo = VALUES(desc_submodulo),
+  desc_accion = VALUES(desc_accion),
+  desc_permiso = VALUES(desc_permiso),
+  desc_usuario_modf = "Super Admin",
+  fec_modf = CURRENT_TIMESTAMP;
+
+-- Insertar asignaciones de permisos a roles basado en la matriz de especificación
+-- SuperAdmin (id_rol = 1) - tiene todos los permisos
+INSERT INTO m_roles_permisos (id_rol, id_permiso, desc_usuario_crea, flg_activo)
+SELECT 1, id_permiso, 'Super Admin', 1 FROM m_permisos WHERE flg_activo = 1;
+
+-- Admin TI (id_rol = 2)
+INSERT INTO m_roles_permisos (id_rol, id_permiso, desc_usuario_crea, flg_activo)
+SELECT 2, p.id_permiso, 'Super Admin', 1 FROM m_permisos p WHERE p.flg_activo = 1
+AND p.cod_permiso IN (
+    'usuario.agregar', 'usuario.consultar', 'usuario.editar', 'usuario.exportar', 'usuario.todas',
+    'trazabilidad.consultar', 'trazabilidad.exportar', 'trazabilidad.todas'
+);
+
+-- Gestor de telefonía (id_rol = 3)
+INSERT INTO m_roles_permisos (id_rol, id_permiso, desc_usuario_crea, flg_activo)
+SELECT 3, p.id_permiso, 'Super Admin', 1 FROM m_permisos p WHERE p.flg_activo = 1
+AND p.cod_permiso IN (
+    'usuario.consultar', 'usuario.exportar',
+    'rango_numeracion.agregar', 'rango_numeracion.exportar', 'rango_numeracion.consultar', 'rango_numeracion.habilitar', 'rango_numeracion.todas',
+    'numero_telefonico.consultar', 'numero_telefonico.editar', 'numero_telefonico.exportar',
+    'portabilidad.consultar', 'portabilidad.editar', 'portabilidad.exportar', 'portabilidad.descargar_plantilla', 'portabilidad.importar_plantilla',
+    'mantenimiento.parametros_sgn', 'mantenimiento.parametros_freeswitch', 'mantenimiento.proveedores', 'mantenimiento.comercializadores', 'mantenimiento.operadores', 'mantenimiento.motivo_cambio_estado', 'mantenimiento.departamento', 'mantenimiento.estado_numero'
+);
+
+-- Supervisor NOC (id_rol = 4)
+INSERT INTO m_roles_permisos (id_rol, id_permiso, desc_usuario_crea, flg_activo)
+SELECT 4, p.id_permiso, 'Super Admin', 1 FROM m_permisos p WHERE p.flg_activo = 1
+AND p.cod_permiso IN (
+    'usuario.exportar',
+    'trazabilidad.consultar', 'trazabilidad.exportar',
+    'numero_telefonico.consultar', 'numero_telefonico.editar', 'numero_telefonico.exportar',
+    'contingencia_freeswitch.consultar', 'contingencia_freeswitch.activar',
+    'portabilidad.consultar', 'portabilidad.editar', 'portabilidad.exportar'
+);
+
+-- Operador NOC (id_rol = 5)
+INSERT INTO m_roles_permisos (id_rol, id_permiso, desc_usuario_crea, flg_activo)
+SELECT 5, p.id_permiso, 'Super Admin', 1 FROM m_permisos p WHERE p.flg_activo = 1
+AND p.cod_permiso IN (
+    'numero_telefonico.consultar', 'numero_telefonico.editar_estados_especiales',
+    'contingencia_freeswitch.consultar', 'contingencia_freeswitch.activar',
+    'portabilidad.consultar', 'portabilidad.editar', 'portabilidad.exportar'
+);
+
+INSERT INTO m_menus_permisos (id_menu, id_permiso, desc_usuario_crea, flg_activo) VALUES
+-- Menú Usuarios
+(2, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'usuario.agregar'), 'Super Admin', 1),
+(2, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'usuario.consultar'), 'Super Admin', 1),
+(2, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'usuario.editar'), 'Super Admin', 1),
+(2, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'usuario.exportar'), 'Super Admin', 1),
+(2, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'usuario.todas'), 'Super Admin', 1),
+(3, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'trazabilidad.consultar'), 'Super Admin', 1),
+(3, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'trazabilidad.exportar'), 'Super Admin', 1),
+(3, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'trazabilidad.todas'), 'Super Admin', 1),
+-- Menú Rangos de numeración
+(4, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'rango_numeracion.agregar'), 'Super Admin', 1),
+(4, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'rango_numeracion.exportar'), 'Super Admin', 1),
+(4, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'rango_numeracion.consultar'), 'Super Admin', 1),
+(4, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'rango_numeracion.habilitar'), 'Super Admin', 1),
+(4, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'rango_numeracion.todas'), 'Super Admin', 1),
+-- Menú Números telefónicos
+(5, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'numero_telefonico.consultar'), 'Super Admin', 1),
+(5, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'numero_telefonico.editar'), 'Super Admin', 1),
+(5, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'numero_telefonico.editar_estados_especiales'), 'Super Admin', 1),
+(5, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'numero_telefonico.exportar'), 'Super Admin', 1),
+-- Menú Contingencia de activación Freeswitch
+(7, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'contingencia_freeswitch.consultar'), 'Super Admin', 1),
+(7, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'contingencia_freeswitch.activar'), 'Super Admin', 1),
+-- Menú Gestión de Portabilidad
+(6, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'portabilidad.consultar'), 'Super Admin', 1),
+(6, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'portabilidad.editar'), 'Super Admin', 1),
+(6, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'portabilidad.exportar'), 'Super Admin', 1),
+(6, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'portabilidad.descargar_plantilla'), 'Super Admin', 1),
+(6, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'portabilidad.importar_plantilla'), 'Super Admin', 1),
+-- Menú Mantenimientos
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.parametros_sgn'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.parametros_freeswitch'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.proveedores'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.comercializadores'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.operadores'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.motivo_cambio_estado'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.departamento'), 'Super Admin', 1),
+(10, (SELECT id_permiso FROM m_permisos WHERE cod_permiso = 'mantenimiento.estado_numero'), 'Super Admin', 1);
+
+
 COMMIT;
 
 -- Validacion rapida

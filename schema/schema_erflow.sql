@@ -415,6 +415,62 @@ CREATE TABLE IF NOT EXISTS m_roles_opciones (
     FOREIGN KEY (id_menu, id_opcion) REFERENCES m_opciones (id_menu, id_opcion)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS m_permisos (
+  id_permiso INT NOT NULL AUTO_INCREMENT,
+  cod_permiso VARCHAR(50) NOT NULL,
+  desc_modulo VARCHAR(100) NOT NULL,
+  desc_submodulo VARCHAR(100) NULL,
+  desc_accion VARCHAR(100) NOT NULL,
+  desc_permiso VARCHAR(255) NULL,
+  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  flg_activo BIT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_permiso),
+  UNIQUE KEY uq_m_permisos_cod_permiso (cod_permiso),
+  KEY ix_m_permisos_modulo_submodulo (desc_modulo, desc_submodulo),
+  KEY ix_m_permisos_accion (desc_accion)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_roles_permisos (
+  id_rol_permiso INT NOT NULL AUTO_INCREMENT,
+  id_rol INT NOT NULL,
+  id_permiso INT NOT NULL,
+  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  flg_activo BIT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_rol_permiso),
+  UNIQUE KEY uq_m_roles_permisos_rol_permiso (id_rol, id_permiso),
+  KEY ix_m_roles_permisos_id_rol (id_rol),
+  KEY ix_m_roles_permisos_id_permiso (id_permiso),
+  CONSTRAINT fk_m_roles_m_roles_permisos
+    FOREIGN KEY (id_rol) REFERENCES m_roles (id_rol),
+  CONSTRAINT fk_m_permisos_m_roles_permisos
+    FOREIGN KEY (id_permiso) REFERENCES m_permisos (id_permiso)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS m_menus_permisos (
+  id_menu_permiso INT NOT NULL AUTO_INCREMENT,
+  id_menu INT NOT NULL,
+  id_permiso INT NOT NULL,
+  desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+  fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  flg_activo BIT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_menu_permiso),
+  UNIQUE KEY uq_m_menus_permisos_menu_permiso (id_menu, id_permiso),
+  KEY ix_m_menus_permisos_id_menu (id_menu),
+  KEY ix_m_menus_permisos_id_permiso (id_permiso),
+  CONSTRAINT fk_m_menus_m_menus_permisos
+    FOREIGN KEY (id_menu) REFERENCES m_menus (id_menu),
+  CONSTRAINT fk_m_permisos_m_menus_permisos
+    FOREIGN KEY (id_permiso) REFERENCES m_permisos (id_permiso)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS t_usuario_rol (
   `id_usuario_rol` INT NOT NULL AUTO_INCREMENT,
   `id_rol` INT NOT NULL,
