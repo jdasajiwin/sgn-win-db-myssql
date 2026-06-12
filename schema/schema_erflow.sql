@@ -597,6 +597,7 @@ CREATE TABLE IF NOT EXISTS t_numero_telefonico (
     fec_baja DATETIME,
     id_motivo_cambio SMALLINT,
     id_estado_numero SMALLINT NOT NULL,
+    id_plan_telefonia SMALLINT,
     id_usuario_creacion INT NOT NULL,
     id_usuario_modificacion INT NOT NULL,
     desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
@@ -611,6 +612,10 @@ CREATE TABLE IF NOT EXISTS t_numero_telefonico (
          ON UPDATE CASCADE,
     CONSTRAINT fk_m_estado_numero_t_numero_telefonico FOREIGN KEY (id_estado_numero)
         REFERENCES m_estado_numero(id_estado_numero)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_plan_telefonico_t_numero_telefonico FOREIGN KEY (id_plan_telefonia)
+        REFERENCES m_plan(id_plan_telefonia)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
     CONSTRAINT fk_m_tipo_documento_t_numero_telefonico FOREIGN KEY (id_tipo_doc)
