@@ -5,6 +5,9 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 
+DROP TABLE IF EXISTS m_menus_permisos;
+DROP TABLE IF exists m_roles_permisos;
+DROP TABLE IF exists m_permisos;
 DROP TABLE IF EXISTS m_operador;
 DROP TABLE IF EXISTS m_estado_numero;
 DROP TABLE IF EXISTS m_tipo_documento;
