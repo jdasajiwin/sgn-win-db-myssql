@@ -23,8 +23,6 @@ DROP TABLE IF EXISTS m_roles;
 DROP TABLE IF EXISTS t_auditoria;
 DROP TABLE IF EXISTS m_tipo_evento;
 DROP TABLE IF EXISTS m_eventos;
-DROP TABLE IF EXISTS m_estados;
-DROP TABLE IF EXISTS m_tipo_estado;
 DROP TABLE IF EXISTS t_trazabilidad_eventos;
 DROP TABLE IF EXISTS m_proveedor_numeracion;
 DROP TABLE IF EXISTS m_comercializador;
@@ -223,30 +221,6 @@ CREATE TABLE IF NOT EXISTS `m_estado_rango` (
   `flg_activo` BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_estado_rango`)
 ) ENGINE=InnoDB ;
-
-CREATE TABLE IF NOT EXISTS `m_tipo_estado` (
-  `id_tipo_estado` int NOT NULL AUTO_INCREMENT,
-  `cod_tipo_estado` varchar(12) NOT NULL,
-  `desc_tipo_estado` varchar(255) NOT NULL,
-  `flg_activo` BIT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_tipo_estado`)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS `m_estados` (
-  `id_estado` TINYINT NOT NULL,
-  `id_tipo_estado` INT NOT NULL,
-  `cod_estado` VARCHAR(12) NOT NULL,
-  `desc_estado` VARCHAR(50) NOT NULL,
-  `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
-  `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
-  `fec_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fec_modf` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `flg_activo` BIT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_estado`),
-  UNIQUE KEY `uq_m_estados_cod_estado` (`cod_estado`),
-  CONSTRAINT `fk_m_tipo_estado_m_estados`
-    FOREIGN KEY (`id_tipo_estado`) REFERENCES `m_tipo_estado` (`id_tipo_estado`)
-) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `m_tipo_evento` (
   `id_tipo_evento` SMALLINT NOT NULL AUTO_INCREMENT,
