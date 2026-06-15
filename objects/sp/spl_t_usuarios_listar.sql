@@ -4,7 +4,8 @@ DELIMITER $$
 CREATE PROCEDURE spl_t_usuarios_listar(
     IN p_desc_usuario VARCHAR(150),
     IN p_id_rol INT,
-    IN p_id_estado TINYINT
+    IN p_id_estado TINYINT,
+    IN p_id_acceso TINYINT
 )
 BEGIN
 
@@ -15,8 +16,8 @@ BEGIN
         u.desc_apellidos,
         u.desc_email,
         u.desc_tipo_login,
-        u.id_estado,
-        CASE u.id_estado
+        u.id_estado_usuario,
+        CASE u.id_estado_usuario
             WHEN 1 THEN 'Activo'
             WHEN 2 THEN 'Bloqueado'
             ELSE NULL
@@ -39,7 +40,11 @@ BEGIN
         )
         AND (
             p_id_estado IS NULL
-            OR u.id_estado = p_id_estado
+            OR u.id_estado_usuario = p_id_estado
+        )
+        AND (
+            p_id_acceso IS NULL
+            OR u.id_acceso_usuario = p_id_acceso
         )
         AND (
             p_id_rol IS NULL

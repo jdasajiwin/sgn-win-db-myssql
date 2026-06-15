@@ -362,16 +362,16 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
   desc_usuario_modf VARCHAR(50) NULL,
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fec_modf DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  id_estado TINYINT NOT NULL DEFAULT 1,
-  id_acceso TINYINT NOT NULL DEFAULT 1,
+  id_estado_usuario TINYINT NOT NULL DEFAULT 1,
+  id_acceso_usuario TINYINT NOT NULL DEFAULT 1,
   flg_activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_usuario),
   UNIQUE KEY uq_t_usuarios_desc_usuario (desc_usuario),
   UNIQUE KEY uq_t_usuarios_desc_email (desc_email),
   CONSTRAINT fk_m_estado_usuario_t_usuarios
-    FOREIGN KEY (id_estado) REFERENCES m_estado_usuario (id_estado_usuario),
+    FOREIGN KEY (id_estado_usuario) REFERENCES m_estado_usuario (id_estado_usuario),
   CONSTRAINT fk_m_acceso_usuario_t_usuarios
-    FOREIGN KEY (id_acceso) REFERENCES m_acceso_usuario (id_acceso_usuario)
+    FOREIGN KEY (id_acceso_usuario) REFERENCES m_acceso_usuario (id_acceso_usuario)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS m_roles_opciones (

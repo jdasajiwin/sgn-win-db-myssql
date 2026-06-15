@@ -16,10 +16,11 @@ BEGIN
 	SELECT
 		id_usuario,
 		desc_email,
-		id_estado
+		id_estado_usuario
 	FROM t_usuarios
 	WHERE desc_email = p_desc_email
-	  AND id_estado = 1;
+	  AND id_estado_usuario = 1
+      AND flg_activo = 1;
       
   SET v_idUsuario=(SELECT id_usuario FROM tmp_result);
   SET v_countRol =(SELECT count(1) FROM t_usuario_rol WHERE id_usuario=v_idUsuario and flg_activo=1);  

@@ -468,7 +468,7 @@ VALUES
   (16, 1, 16, 16, 'seed', 'seed', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO t_usuarios (
-  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado, id_acceso,
+  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado_usuario, id_acceso_usuario,
   desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
@@ -480,14 +480,15 @@ ON DUPLICATE KEY UPDATE
   desc_nombres = VALUES(desc_nombres),
   desc_apellidos = VALUES(desc_apellidos),
   desc_email = VALUES(desc_email),
-  id_estado = VALUES(id_estado),
+  id_estado_usuario = VALUES(id_estado_usuario),
+  id_acceso_usuario = VALUES(id_acceso_usuario),
   desc_password = VALUES(desc_password),
   desc_tipo_login = VALUES(desc_tipo_login),
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
 INSERT INTO t_usuarios (
-  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado, id_acceso,
+  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado_usuario, id_acceso_usuario,
   desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
@@ -499,14 +500,15 @@ ON DUPLICATE KEY UPDATE
   desc_nombres = VALUES(desc_nombres),
   desc_apellidos = VALUES(desc_apellidos),
   desc_email = VALUES(desc_email),
-  id_estado = VALUES(id_estado),
+  id_estado_usuario = VALUES(id_estado_usuario),
+  id_acceso_usuario = VALUES(id_acceso_usuario),
   desc_password = VALUES(desc_password),
   desc_tipo_login = VALUES(desc_tipo_login),
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
 INSERT INTO t_usuarios (
-  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado, id_acceso,
+  id_usuario, desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado_usuario, id_acceso_usuario,
   desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
 )
 VALUES (
@@ -518,7 +520,8 @@ ON DUPLICATE KEY UPDATE
   desc_nombres = VALUES(desc_nombres),
   desc_apellidos = VALUES(desc_apellidos),
   desc_email = VALUES(desc_email),
-  id_estado = VALUES(id_estado),
+  id_estado_usuario = VALUES(id_estado_usuario),
+  id_acceso_usuario = VALUES(id_acceso_usuario),
   desc_password = VALUES(desc_password),
   desc_tipo_login = VALUES(desc_tipo_login),
   desc_usuario_modf = CURRENT_USER(),

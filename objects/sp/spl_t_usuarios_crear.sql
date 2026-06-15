@@ -23,7 +23,7 @@ BEGIN
 			,desc_email
 			,desc_password
 			,desc_tipo_login
-			,id_estado
+			,id_estado_usuario
 		)
 	 VALUES (
 			p_desc_usuario
