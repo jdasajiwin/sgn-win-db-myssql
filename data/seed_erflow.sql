@@ -322,16 +322,17 @@ ON DUPLICATE KEY UPDATE
   desc_ruta = VALUES(desc_ruta),
   flg_activo = VALUES(flg_activo);
 
-INSERT INTO m_roles (id_rol, cod_rol, desc_rol, flg_activo)
+INSERT INTO m_roles (id_rol, cod_rol, desc_rol, num_nivel_jerarquia, flg_activo)
 VALUES
-  (1, LEFT(REGEXP_REPLACE(UPPER('Super Admin'), '[^A-Z0-9]', ''), 12), 'SuperAdmin', 1),
-  (2, LEFT(REGEXP_REPLACE(UPPER('Admin TI'), '[^A-Z0-9]', ''), 12), 'Admin TI', 1),
-  (3, LEFT(REGEXP_REPLACE(UPPER('Gestor de telefonia'), '[^A-Z0-9]', ''), 12), 'Gestor de telefonía', 1),
-  (4, LEFT(REGEXP_REPLACE(UPPER('Supervisor NOC'), '[^A-Z0-9]', ''), 12), 'Supervisor NOC', 1),
-  (5, LEFT(REGEXP_REPLACE(UPPER('Operador NOC'), '[^A-Z0-9]', ''), 12), 'Operador NOC', 1)
+  (1, LEFT(REGEXP_REPLACE(UPPER('Super Admin'), '[^A-Z0-9]', ''), 12), 'SuperAdmin', 10, 1),
+  (2, LEFT(REGEXP_REPLACE(UPPER('Admin TI'), '[^A-Z0-9]', ''), 12), 'Admin TI', 20, 1),
+  (3, LEFT(REGEXP_REPLACE(UPPER('Gestor de telefonia'), '[^A-Z0-9]', ''), 12), 'Gestor de telefonía', 30, 1),
+  (4, LEFT(REGEXP_REPLACE(UPPER('Supervisor NOC'), '[^A-Z0-9]', ''), 12), 'Supervisor NOC', 40, 1),
+  (5, LEFT(REGEXP_REPLACE(UPPER('Operador NOC'), '[^A-Z0-9]', ''), 12), 'Operador NOC', 50, 1)
 ON DUPLICATE KEY UPDATE
   cod_rol = VALUES(cod_rol),
   desc_rol = VALUES(desc_rol),
+  num_nivel_jerarquia = VALUES(num_nivel_jerarquia),
   flg_activo = VALUES(flg_activo);
 
 INSERT INTO m_roles_menus (

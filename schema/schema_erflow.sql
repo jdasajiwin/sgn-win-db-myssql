@@ -322,6 +322,7 @@ CREATE TABLE IF NOT EXISTS m_roles (
   id_rol INT NOT NULL AUTO_INCREMENT,
   cod_rol VARCHAR(12) NOT NULL,
   desc_rol VARCHAR(150) NOT NULL,
+  num_nivel_jerarquia TINYINT NOT NULL,
   desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
   desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT "Super Admin",
   fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
