@@ -528,6 +528,67 @@ ON DUPLICATE KEY UPDATE
   desc_usuario_modf = CURRENT_USER(),
   fec_modf = CURRENT_TIMESTAMP;
 
+INSERT INTO t_usuarios (
+  desc_usuario, desc_nombres, desc_apellidos, desc_email, id_estado_usuario, id_acceso_usuario,
+  desc_password, desc_tipo_login, desc_usuario_crea, desc_usuario_modf, fec_creacion, fec_modf
+)
+VALUES (
+  'jperez', 'Juan', 'Perez', 'juan.perez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'carpio', 'Carmen', 'Carpio', 'carmen.carpio@outlook.com', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'mgomez', 'Maria', 'Gomez', 'maria.gomez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'clopez', 'Carlos', 'Lopez', 'carlos.lopez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'amartinez', 'Ana', 'Martinez', 'ana.martinez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'lgarcia', 'Luis', 'Garcia', 'luis.garcia@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'srodriguez', 'Sophia', 'Rodriguez', 'sophia.rodriguez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'dsanchez', 'Diego', 'Sanchez', 'diego.sanchez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'mmorales', 'Maria', 'Morales', 'maria.morales@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+),
+(
+  'jlopez', 'Jose', 'Lopez', 'jose.lopez@win.pe', 1, 1,
+  NULL, 'AD', CURRENT_USER(), CURRENT_USER(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+);
+
+INSERT INTO t_usuario_rol (
+  id_rol, id_usuario, flg_activo
+)
+VALUES 
+(3, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'jperez'), 1),
+(3, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'carpio'), 1),
+(3, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'mgomez'), 1),
+(4, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'clopez'), 1),
+(4, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'amartinez'), 1),
+(4, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'lgarcia'), 1),
+(5, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'srodriguez'), 1),
+(5, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'dsanchez'), 1),
+(5, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'mmorales'), 1),
+(5, (SELECT id_usuario FROM t_usuarios WHERE desc_usuario = 'jlopez'), 1);
+
+
 -- 3) Relacion usuario-rol (solo SuperAdmin al usuario principal)
 INSERT INTO t_usuario_rol (
   id_usuario_rol, id_rol, id_usuario, flg_activo,
