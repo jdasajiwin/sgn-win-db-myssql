@@ -12,10 +12,11 @@ BEGIN
 		desc_apellidos,
 		desc_email,
 		desc_password,
-		id_estado_usuario
+		id_estado_usuario,
+		id_acceso_usuario,
+		flg_activo
 	FROM t_usuarios
 	WHERE desc_email = p_desc_email
-	  AND id_estado_usuario = 1
 	  AND flg_activo = 1;
     
 END$$

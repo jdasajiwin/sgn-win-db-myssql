@@ -16,10 +16,10 @@ BEGIN
 	SELECT
 		id_usuario,
 		desc_email,
-		id_estado_usuario
+		id_estado_usuario,
+		id_acceso_usuario
 	FROM t_usuarios
 	WHERE desc_email = p_desc_email
-	  AND id_estado_usuario = 1
       AND flg_activo = 1;
       
   SET v_idUsuario=(SELECT id_usuario FROM tmp_result);

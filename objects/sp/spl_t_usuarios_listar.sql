@@ -32,6 +32,7 @@ BEGIN
         u.id_acceso_usuario,
         eu.desc_estado,
         au.desc_acceso,
+        rc.id_rol,
         rc.roles
     FROM t_usuarios u
     INNER JOIN m_estado_usuario eu ON eu.id_estado_usuario = u.id_estado_usuario AND eu.flg_activo = 1
@@ -44,7 +45,7 @@ BEGIN
         GROUP BY ur.id_usuario
     ) j ON j.id_usuario = u.id_usuario
     LEFT JOIN (
-        SELECT ur.id_usuario,
+        SELECT ur.id_usuario, r.id_rol, 
                GROUP_CONCAT(DISTINCT r.desc_rol ORDER BY r.desc_rol SEPARATOR ', ') AS roles
         FROM t_usuario_rol ur
         INNER JOIN m_roles r ON r.id_rol = ur.id_rol
