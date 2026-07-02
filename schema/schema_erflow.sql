@@ -64,17 +64,6 @@ CREATE TABLE IF NOT EXISTS `m_operador` (
     `flg_activo` BIT NOT NULL DEFAULT 1
 )ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
-    `id_motivo_rechazo` SMALLINT PRIMARY KEY AUTO_INCREMENT,
-    `desc_motivo_rechazo` VARCHAR(50),
-    `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
-    `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
-    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP,
-    `flg_activo` BIT NOT NULL DEFAULT 1
-)ENGINE=InnoDB;
-
 CREATE TABLE IF NOT EXISTS `m_estado_portabilidad` (
     `id_estado_portabilidad` SMALLINT PRIMARY KEY AUTO_INCREMENT,
     `desc_estado_portabilidad` VARCHAR(50),
