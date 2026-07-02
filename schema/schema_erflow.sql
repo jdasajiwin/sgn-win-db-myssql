@@ -38,6 +38,7 @@ DROP TABLE IF EXISTS t_rango_numeracion;
 DROP TABLE IF EXISTS t_historial_numero;
 DROP TABLE IF EXISTS t_numero_telefonico;
 DROP TABLE IF EXISTS t_numero_adjunto;
+DROP TABLE IF EXISTS t_portabilidad_numero;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -93,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `m_motivo_rechazo` (
     `desc_motivo_rechazo` VARCHAR(50),
     `desc_usuario_crea` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
     `desc_usuario_modf` VARCHAR(50) NOT NULL DEFAULT "Super Admin",
-    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    `fec_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `fec_modf` DATETIME DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
     `flg_activo` BIT NOT NULL DEFAULT 1
@@ -630,6 +631,45 @@ CREATE TABLE IF NOT EXISTS t_numero_adjunto (
     ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS t_portabilidad_numero (
+    id_portabilidad_numero BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_tipo_doc SMALLINT NOT NULL,
+    id_operador_cedente SMALLINT NOT NULL,
+    id_operador_receptor SMALLINT NOT NULL,
+    id_estado_portabilidad SMALLINT NOT NULL,
+    id_motivo_rechazo SMALLINT NULL,
+    id_cliente_freeswitch VARCHAR(100),
+    desc_numero_documento VARCHAR(30) NOT NULL,
+    desc_numero_telefonico VARCHAR(20) NOT NULL,
+    fec_programacion_portabilidad DATETIME NOT NULL,
+    fec_ejecucion_portabilidad DATETIME NULL,
+    desc_usuario_crea VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+    desc_usuario_modf VARCHAR(50) NOT NULL DEFAULT "Super Admin",
+    fec_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fec_modf DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_m_tipo_documento_t_portabilidad_numero FOREIGN KEY (id_tipo_doc)
+        REFERENCES m_tipo_documento(id_tipo_doc)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_operador_t_portabilidad_numero_cedente FOREIGN KEY (id_operador_cedente)
+        REFERENCES m_operador(id_operador)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_operador_t_portabilidad_numero_receptor FOREIGN KEY (id_operador_receptor)
+        REFERENCES m_operador(id_operador)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_estado_portabilidad_t_portabilidad_numero FOREIGN KEY (id_estado_portabilidad)
+        REFERENCES m_estado_portabilidad(id_estado_portabilidad)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_m_motivo_rechazo_t_portabilidad_numero FOREIGN KEY (id_motivo_rechazo)
+        REFERENCES m_motivo_rechazo(id_motivo_rechazo)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
 -- win_sgn_db.app_security_settings definition
 CREATE TABLE IF NOT EXISTS `app_security_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -691,3 +731,10 @@ ON t_rango_numeracion(id_comercializador);
 CREATE INDEX ix_t_rango_numeracion_id_estado_rango
 ON t_rango_numeracion(id_estado_rango);
 CREATE INDEX ix_t_rango_numeracion_id_tipo_servicio_departamento_tipo_zona ON t_rango_numeracion (id_tipo_servicio, id_departamento, id_tipo_zona);
+
+CREATE INDEX ix_t_portabilidad_numero_fec_programacion_portabilidad
+ON t_portabilidad_numero(fec_programacion_portabilidad);
+CREATE INDEX ix_t_portabilidad_numero_id_estado_portabilidad
+ON t_portabilidad_numero(id_estado_portabilidad);
+CREATE INDEX ix_t_portabilidad_numero_id_operador_cedente
+ON t_portabilidad_numero(id_operador_cedente);
