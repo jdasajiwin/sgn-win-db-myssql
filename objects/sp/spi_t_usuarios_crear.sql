@@ -1,11 +1,11 @@
-DROP PROCEDURE IF EXISTS spl_t_usuarios_crear;
+DROP PROCEDURE IF EXISTS spi_t_usuarios_crear;
 
 -- Alta de usuario: solo parametriza datos de negocio; id_usuario por AUTO_INCREMENT;
 -- desc_usuario_crea y fec_creacion por defecto de tabla; desc_usuario_modf y fec_modf quedan NULL.
 -- Requiere t_usuarios con desc_usuario_modf y fec_modf aceptando NULL (ver schema_erflow.sql).
 
 DELIMITER $$
-CREATE PROCEDURE spl_t_usuarios_crear(
+CREATE PROCEDURE spi_t_usuarios_crear(
     IN p_desc_usuario VARCHAR(150),
     IN p_desc_nombres VARCHAR(255),
     IN p_desc_apellidos VARCHAR(255),
