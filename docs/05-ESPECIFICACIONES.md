@@ -2,6 +2,11 @@
 
 Este documento describe el **estándar objetivo** (`Estándares de base de datos v 2.0 2.pdf`) y las **diferencias del schema actual** (`schema/schema_erflow.sql`).
 
+Ubicación en el compartido de los scripts para la generación de la data:  
+```
+\\10.24.100.13\DEV_Upload\WINET-PRY-2026-0002 IMPLEMENTACIÓN DEL SISTEMA DE GESTIÓN DE NÚMEROS (SGN)\BD\SGN
+```
+
 ---
 
 ## Nomenclatura
@@ -155,4 +160,4 @@ mysql -u root -p win_sgn_db -e "CALL spl_departamento();"
 - Estándar interno: `Estándares de base de datos v 2.0 2`
 - Schema: `schema/schema_erflow.sql`
 - Seed: `data/seed_erflow.sql`
-- SP: `objects/sp/*sql
+- SP: `objects/sp/*sql`

@@ -1,6 +1,6 @@
 # Stored Procedures
 
-Documentación alineada a `objects/sp/*.sql` (26 procedimientos, excluyendo `deploy.sql`).
+Documentación alineada a `objects/sp/*.sql` (26 procedimientos).
 
 ## Nomenclatura
 

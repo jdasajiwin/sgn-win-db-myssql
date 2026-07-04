@@ -17,7 +17,6 @@ Estado alineado con el schema y seed actuales.
 ### T-003: Stored Procedures base
 - **Estado**: Completado (usuarios, catálogos, trazabilidad)
 - **Cantidad**: 26 SP en `objects/sp/`
-- **Deploy**: `objects/sp/deploy.sql`
 
 ---
 
